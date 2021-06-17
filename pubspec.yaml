@@ -10,8 +10,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  pressable:
-    git: git@github.com:vaetas/pressable.git
 
 dev_dependencies:
   flutter_test:
