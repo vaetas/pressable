@@ -29,6 +29,15 @@ class PressableFill extends Pressable {
 class _PressableFillState extends PressableBaseState<PressableFill> {
   @override
   Widget build(BuildContext context) {
+    return InkWell(
+      onTap: widget.onPressed,
+      onLongPress: widget.onLongPressed,
+      splashFactory: InkRipple.splashFactory,
+      highlightColor: widget.fillColor,
+      splashColor: Colors.transparent,
+      borderRadius: widget.borderRadius,
+      child: widget.child,
+    );
     return GestureDetector(
       onTap: widget.onPressed,
       onTapDown: widget.onPressed != null ? onPressStarted : null,

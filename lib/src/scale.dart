@@ -51,9 +51,15 @@ class _PressableScaleState extends PressableBaseState<PressableScale>
           widget.onLongPressed != null ? super.onLongPressStarted : null,
       onLongPressEnd:
           widget.onLongPressed != null ? super.onLongPressEnded : null,
-      child: ScaleTransition(
-        scale: _animation,
-        child: widget.child,
+      behavior: HitTestBehavior.opaque,
+      excludeFromSemantics: true,
+      child: Builder(
+        builder: (context) {
+          return ScaleTransition(
+            scale: _animation,
+            child: widget.child,
+          );
+        },
       ),
     );
   }

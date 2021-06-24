@@ -32,10 +32,8 @@ class HomeScreen extends StatelessWidget {
               print('[HomeScreen.build] Builder pressed');
             },
             builder: (context, isPressed) {
-              return Container(
-                padding: const EdgeInsets.all(10),
-                color: isPressed ? Colors.red : Colors.black,
-                child: const Text('Builder'),
+              return ExampleButton(
+                title: 'Builder',
               );
             },
           ),
@@ -43,38 +41,55 @@ class HomeScreen extends StatelessWidget {
             onPressed: () {
               print('[HomeScreen.build] Ripple pressed');
             },
-            child: Container(
-              padding: const EdgeInsets.all(10),
-              child: const Text('Ripple'),
-            ),
+            child: ExampleButton(title: 'Ripple'),
           ),
           Pressable.scale(
             onPressed: () {
               print('[HomeScreen.build] Scale pressed');
             },
-            child: Container(
-              padding: const EdgeInsets.all(10),
-              child: const Text('Scale'),
-            ),
+            child: ExampleButton(title: 'Scale'),
           ),
           Pressable.opacity(
             onPressed: () {
               print('[HomeScreen.build] Opacity pressed');
             },
-            child: Container(
-              padding: const EdgeInsets.all(10),
-              child: const Text('Opacity'),
-            ),
+            child: ExampleButton(title: 'Opacity'),
           ),
           Pressable.fill(
             onPressed: () {
               print('[HomeScreen.build] Fill pressed');
             },
-            child: Container(
-              padding: const EdgeInsets.all(10),
-              width: 300,
-              child: const Text('Fill'),
-            ),
+            fillColor: Colors.red.withOpacity(0.2),
+            child: ExampleButton(title: 'Fill'),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class ExampleButton extends StatelessWidget {
+  const ExampleButton({
+    Key? key,
+    required this.title,
+  }) : super(key: key);
+
+  final String title;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 150,
+      height: 50,
+      padding: const EdgeInsets.symmetric(horizontal: 8),
+      color: Colors.black12,
+      child: Row(
+        children: [
+          Text(title),
+          Spacer(),
+          IconButton(
+            onPressed: () {},
+            icon: Icon(Icons.bookmark),
           ),
         ],
       ),

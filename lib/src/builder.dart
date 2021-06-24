@@ -2,6 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:pressable/pressable.dart';
 import 'package:pressable/src/base.dart';
 
+typedef PressableBuilderCallback = Widget Function(
+  BuildContext context,
+  bool isPressed,
+  // void Function(bool active) setPressed,
+);
+
 class PressableBuilder extends Pressable {
   const PressableBuilder({
     Key? key,
@@ -19,12 +25,6 @@ class PressableBuilder extends Pressable {
 }
 
 class _PressableBuilderState extends PressableBaseState<PressableBuilder> {
-  @override
-  void onPressStarted(TapDownDetails details) {
-    super.onPressStarted(details);
-    widget.onPressed!();
-  }
-
   @override
   Widget build(BuildContext context) {
     return GestureDetector(

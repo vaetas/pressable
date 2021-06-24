@@ -1,7 +1,5 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-
-typedef PressableBuilderCallback = Widget Function(
-    BuildContext context, bool isPressed);
 
 abstract class PressableBaseState<T extends StatefulWidget> extends State<T> {
   bool isPressed = false;

@@ -35,18 +35,12 @@ class _PressableOpacityState extends PressableBaseState<PressableOpacity> {
       onTapUp: widget.onPressed != null ? onPressEnded : null,
       onTapCancel: widget.onPressed != null ? onPressCanceled : null,
       onLongPress: widget.onLongPressed,
-      onLongPressStart:
-          widget.onLongPressed != null ? super.onLongPressStarted : null,
-      onLongPressEnd:
-          widget.onLongPressed != null ? super.onLongPressEnded : null,
-      child: Container(
-        color: widget.backgroundColor,
-        child: AnimatedOpacity(
-          opacity: isPressed ? widget.opacityFactor : 1.0,
-          duration: widget.duration,
-          curve: widget.curve,
-          child: widget.child,
-        ),
+      behavior: HitTestBehavior.opaque,
+      child: AnimatedOpacity(
+        opacity: isPressed ? widget.opacityFactor : 1.0,
+        duration: widget.duration,
+        curve: widget.curve,
+        child: widget.child,
       ),
     );
   }
