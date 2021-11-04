@@ -1,3 +1,4 @@
+import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:pressable/pressable.dart';
 
@@ -7,17 +8,13 @@ class PressableRipple extends Pressable {
     required this.child,
     this.onPressed,
     this.onLongPressed,
-    this.splashColor,
-    this.highlightColor,
-    this.borderRadius,
+    this.theme,
   }) : super(key: key);
 
   final Widget child;
   final VoidCallback? onPressed;
   final VoidCallback? onLongPressed;
-  final Color? splashColor;
-  final Color? highlightColor;
-  final BorderRadius? borderRadius;
+  final PressableRippleTheme? theme;
 
   @override
   _PressableRippleState createState() => _PressableRippleState();
@@ -30,10 +27,25 @@ class _PressableRippleState extends State<PressableRipple> {
       onTap: widget.onPressed,
       onLongPress: widget.onLongPressed,
       splashFactory: InkRipple.splashFactory,
-      highlightColor: widget.highlightColor,
-      splashColor: widget.splashColor,
-      borderRadius: widget.borderRadius,
+      highlightColor: widget.theme?.highlightColor,
+      splashColor: widget.theme?.splashColor,
+      borderRadius: widget.theme?.borderRadius,
       child: widget.child,
     );
   }
+}
+
+class PressableRippleTheme extends Equatable {
+  const PressableRippleTheme({
+    this.splashColor,
+    this.highlightColor,
+    this.borderRadius,
+  });
+
+  final Color? splashColor;
+  final Color? highlightColor;
+  final BorderRadius? borderRadius;
+
+  @override
+  List<Object?> get props => [splashColor, highlightColor, borderRadius];
 }

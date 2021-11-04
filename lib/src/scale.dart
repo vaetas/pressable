@@ -1,3 +1,4 @@
+import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:pressable/pressable.dart';
 import 'package:pressable/src/base.dart';
@@ -8,17 +9,13 @@ class PressableScale extends Pressable {
     required this.child,
     this.onPressed,
     this.onLongPressed,
-    this.scaleFactor = 0.6,
-    this.duration = const Duration(milliseconds: 100),
-    this.curve = Curves.bounceInOut,
+    this.theme = const PressableScaleTheme(),
   }) : super(key: key);
 
   final Widget child;
   final VoidCallback? onPressed;
   final VoidCallback? onLongPressed;
-  final double scaleFactor;
-  final Duration duration;
-  final Curve curve;
+  final PressableScaleTheme theme;
 
   @override
   _PressableScaleState createState() => _PressableScaleState();
@@ -27,16 +24,16 @@ class PressableScale extends Pressable {
 class _PressableScaleState extends PressableBaseState<PressableScale>
     with TickerProviderStateMixin {
   late final AnimationController _controller = AnimationController(
-    duration: widget.duration,
+    duration: widget.theme.duration,
     vsync: this,
     value: 1.0,
-    lowerBound: widget.scaleFactor,
+    lowerBound: widget.theme.scaleFactor,
     upperBound: 1.0,
   );
 
   late final Animation<double> _animation = CurvedAnimation(
     parent: _controller,
-    curve: widget.curve,
+    curve: widget.theme.curve,
   );
 
   @override
@@ -67,7 +64,7 @@ class _PressableScaleState extends PressableBaseState<PressableScale>
   @override
   void onPressStarted(TapDownDetails details) {
     super.onPressStarted(details);
-    _controller.animateTo(widget.scaleFactor);
+    _controller.animateTo(widget.theme.scaleFactor);
   }
 
   @override
@@ -87,4 +84,19 @@ class _PressableScaleState extends PressableBaseState<PressableScale>
     _controller.dispose();
     super.dispose();
   }
+}
+
+class PressableScaleTheme extends Equatable {
+  const PressableScaleTheme({
+    this.scaleFactor = 0.6,
+    this.duration = const Duration(milliseconds: 100),
+    this.curve = Curves.easeInOut,
+  });
+
+  final double scaleFactor;
+  final Duration duration;
+  final Curve curve;
+
+  @override
+  List<Object?> get props => [scaleFactor, duration, curve];
 }

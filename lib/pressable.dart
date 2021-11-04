@@ -8,6 +8,10 @@ import 'package:pressable/src/ripple.dart';
 import 'package:pressable/src/scale.dart';
 
 export 'package:pressable/src/builder.dart' show PressableBuilderCallback;
+export 'package:pressable/src/fill.dart' show PressableFillTheme;
+export 'package:pressable/src/opacity.dart' show PressableOpacityTheme;
+export 'package:pressable/src/ripple.dart' show PressableRippleTheme;
+export 'package:pressable/src/scale.dart' show PressableScaleTheme;
 
 /// Choose named constructors to pick press effect.
 abstract class Pressable extends StatefulWidget {
@@ -19,67 +23,55 @@ abstract class Pressable extends StatefulWidget {
     required Widget child,
     VoidCallback? onPressed,
     VoidCallback? onLongPressed,
-    BorderRadius? borderRadius,
-    Color? splashColor,
-    Color? highlightColor,
+    PressableRippleTheme? theme,
   }) {
     return PressableRipple(
       key: key,
       onPressed: onPressed,
       onLongPressed: onLongPressed,
-      borderRadius: borderRadius,
-      splashColor: splashColor,
-      highlightColor: highlightColor,
+      theme: theme ?? const PressableRippleTheme(),
       child: child,
     );
   }
 
-  /// Scales the [child] by [scaleFactor] when tapped.
+  /// Scales the [child] to [PressableScaleTheme.scaleFactor] when tapped.
   factory Pressable.scale({
     Key? key,
     required Widget child,
     VoidCallback? onPressed,
     VoidCallback? onLongPressed,
-    Duration duration = const Duration(milliseconds: 100),
-    Curve curve = Curves.easeInOut,
-    double scaleFactor = 0.6,
+    PressableScaleTheme? theme,
   }) {
     return PressableScale(
       key: key,
       onPressed: onPressed,
       onLongPressed: onLongPressed,
-      curve: curve,
-      duration: duration,
-      scaleFactor: scaleFactor,
+      theme: theme ?? const PressableScaleTheme(),
       child: child,
     );
   }
 
-  /// Adds [opacityFactor] opacity to the [child] when pressed.
+  /// Adds [PressableOpacityTheme.opacityFactor] opacity to the [child]
+  /// when pressed.
   factory Pressable.opacity({
     Key? key,
     required Widget child,
     VoidCallback? onPressed,
     VoidCallback? onLongPressed,
-    Duration duration = const Duration(milliseconds: 100),
-    Curve curve = Curves.linear,
-    double opacityFactor = 0.6,
-    Color backgroundColor = Colors.transparent,
+    PressableOpacityTheme? theme,
   }) {
     return PressableOpacity(
       key: key,
       onPressed: onPressed,
       onLongPressed: onLongPressed,
-      duration: duration,
-      curve: curve,
-      opacityFactor: opacityFactor,
-      backgroundColor: backgroundColor,
+      theme: theme ?? const PressableOpacityTheme(),
       child: child,
     );
   }
 
-  /// Puts [fillColor] over the [child] when pressed. [fillColor] needs to be
-  /// semi-transparent so that the [child] can be visible.
+  /// Puts [PressableFillTheme.fillColor] over the [child] when pressed.
+  /// [PressableFillTheme.fillColor] needs to be semi-transparent so that
+  /// the [child] can be visible.
   ///
   /// Uses [InkWell] for the implementation.
   factory Pressable.fill({
@@ -87,19 +79,13 @@ abstract class Pressable extends StatefulWidget {
     required Widget child,
     VoidCallback? onPressed,
     VoidCallback? onLongPressed,
-    Duration duration = const Duration(milliseconds: 100),
-    Curve curve = Curves.linear,
-    Color fillColor = Colors.black38,
-    BorderRadius? borderRadius,
+    PressableFillTheme? theme,
   }) {
     return PressableFill(
       key: key,
       onPressed: onPressed,
       onLongPressed: onLongPressed,
-      duration: duration,
-      curve: curve,
-      fillColor: fillColor,
-      borderRadius: borderRadius,
+      theme: theme ?? const PressableFillTheme(),
       child: child,
     );
   }
