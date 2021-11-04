@@ -38,32 +38,5 @@ class _PressableFillState extends PressableBaseState<PressableFill> {
       borderRadius: widget.borderRadius,
       child: widget.child,
     );
-    return GestureDetector(
-      onTap: widget.onPressed,
-      onTapDown: widget.onPressed != null ? onPressStarted : null,
-      onTapUp: widget.onPressed != null ? onPressEnded : null,
-      onTapCancel: widget.onPressed != null ? onPressCanceled : null,
-      onLongPress: widget.onLongPressed,
-      onLongPressStart:
-          widget.onLongPressed != null ? super.onLongPressStarted : null,
-      onLongPressEnd:
-          widget.onLongPressed != null ? super.onLongPressEnded : null,
-      child: Stack(
-        children: [
-          widget.child,
-          Positioned.fill(
-            child: AnimatedContainer(
-              duration: widget.duration,
-              curve: widget.curve,
-              decoration: BoxDecoration(
-                borderRadius: widget.borderRadius,
-                color: isPressed ? widget.fillColor : Colors.transparent,
-              ),
-              child: const SizedBox.expand(),
-            ),
-          ),
-        ],
-      ),
-    );
   }
 }

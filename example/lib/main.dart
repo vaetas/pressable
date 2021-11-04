@@ -1,11 +1,14 @@
+// ignore_for_file: avoid_print
 import 'package:flutter/material.dart';
 import 'package:pressable/pressable.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -13,7 +16,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: HomeScreen(),
+      home: const HomeScreen(),
     );
   }
 }
@@ -32,8 +35,14 @@ class HomeScreen extends StatelessWidget {
               print('[HomeScreen.build] Builder pressed');
             },
             builder: (context, isPressed) {
-              return ExampleButton(
-                title: 'Builder',
+              return AnimatedContainer(
+                width: 150,
+                height: 50,
+                color: isPressed ? Colors.blue : const Color(0xFFd6d6d6),
+                duration: const Duration(milliseconds: 100),
+                child: const Center(
+                  child: Text('Custom Builder'),
+                ),
               );
             },
           ),
@@ -41,26 +50,51 @@ class HomeScreen extends StatelessWidget {
             onPressed: () {
               print('[HomeScreen.build] Ripple pressed');
             },
-            child: ExampleButton(title: 'Ripple'),
+            child: const ExampleButton(title: 'Ripple'),
           ),
           Pressable.scale(
             onPressed: () {
               print('[HomeScreen.build] Scale pressed');
             },
-            child: ExampleButton(title: 'Scale'),
+            child: const ExampleButton(title: 'Scale'),
           ),
           Pressable.opacity(
             onPressed: () {
               print('[HomeScreen.build] Opacity pressed');
             },
-            child: ExampleButton(title: 'Opacity'),
+            child: const ExampleButton(title: 'Opacity'),
           ),
           Pressable.fill(
             onPressed: () {
               print('[HomeScreen.build] Fill pressed');
             },
             fillColor: Colors.red.withOpacity(0.2),
-            child: ExampleButton(title: 'Fill'),
+            child: const ExampleButton(title: 'Fill'),
+          ),
+          SizedBox(
+            width: 150,
+            child: Stack(
+              children: [
+                Pressable.scale(
+                  onPressed: () {
+                    print('[HomeScreen.build] Scale pressed');
+                  },
+                  child: Container(
+                    width: 150,
+                    height: 50,
+                    color: Colors.black12,
+                    child: const Center(child: Text('Test')),
+                  ),
+                ),
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: IconButton(
+                    onPressed: () {},
+                    icon: const Icon(Icons.bookmark),
+                  ),
+                ),
+              ],
+            ),
           ),
         ],
       ),
@@ -86,10 +120,10 @@ class ExampleButton extends StatelessWidget {
       child: Row(
         children: [
           Text(title),
-          Spacer(),
+          const Spacer(),
           IconButton(
             onPressed: () {},
-            icon: Icon(Icons.bookmark),
+            icon: const Icon(Icons.bookmark),
           ),
         ],
       ),

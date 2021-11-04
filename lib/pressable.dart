@@ -1,12 +1,13 @@
 library pressable;
 
 import 'package:flutter/material.dart';
-import 'package:pressable/src/base.dart';
 import 'package:pressable/src/builder.dart';
 import 'package:pressable/src/fill.dart';
 import 'package:pressable/src/opacity.dart';
 import 'package:pressable/src/ripple.dart';
 import 'package:pressable/src/scale.dart';
+
+export 'package:pressable/src/builder.dart' show PressableBuilderCallback;
 
 /// Choose named constructors to pick press effect.
 abstract class Pressable extends StatefulWidget {
@@ -79,6 +80,8 @@ abstract class Pressable extends StatefulWidget {
 
   /// Puts [fillColor] over the [child] when pressed. [fillColor] needs to be
   /// semi-transparent so that the [child] can be visible.
+  ///
+  /// Uses [InkWell] for the implementation.
   factory Pressable.fill({
     Key? key,
     required Widget child,
