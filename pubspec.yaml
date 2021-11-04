@@ -1,6 +1,6 @@
 name: pressable
-description: Add various touch effects to your widgets. Supports ripple, scale, opacity and fill.
-version: 0.1.0
+description: Add various touch effects to your widgets. Supports ripple, scale, opacity, fill, and custom builder.
+version: 0.2.0
 homepage: https://github.com/vaetas/pressable
 
 environment:

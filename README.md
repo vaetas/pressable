@@ -1,20 +1,22 @@
 # Pressable
 
-## Install
+Quickly add tap effects to your widgets.
 
-Use the Git version.
+*Work in progress. Widgets may change at any time.*
 
-```yaml
-dependencies:
-  pressable:
-    git: git@github.com:vaetas/pressable.git
+```dart
+Pressable.opacity(
+  onPressed: () {
+    print('Opacity pressed');
+  },
+  child: const ExampleButton(title: 'Opacity'),
+)
 ```
 
-Add touch effects to your Widgets. Serves as a replacement for `GestureDetector` and `InkWell`. 
-
 Supported effects:
- 
- * Ripple (InkWell)
- * Scale
- * Opacity
- * Fill
+
+* Ripple (InkWell)
+* Scale
+* Opacity
+* Fill
+* Custom builder
