@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pressable/pressable.dart';
+import 'package:pressable/src/provider.dart';
 
 class PressableRipple extends Pressable {
   const PressableRipple({
@@ -20,15 +21,19 @@ class PressableRipple extends Pressable {
 }
 
 class _PressableRippleState extends State<PressableRipple> {
+  PressableRippleTheme? get theme {
+    return widget.theme ?? DefaultPressableTheme.of(context)?.rippleTheme;
+  }
+
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: widget.onPressed,
       onLongPress: widget.onLongPressed,
       splashFactory: InkRipple.splashFactory,
-      highlightColor: widget.theme?.highlightColor,
-      splashColor: widget.theme?.splashColor,
-      borderRadius: widget.theme?.borderRadius,
+      highlightColor: theme?.highlightColor,
+      splashColor: theme?.splashColor,
+      borderRadius: theme?.borderRadius,
       child: widget.child,
     );
   }

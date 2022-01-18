@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pressable/pressable.dart';
 import 'package:pressable/src/base.dart';
+import 'package:pressable/src/provider.dart';
 
 class PressableFill extends Pressable {
   const PressableFill({
@@ -14,22 +15,28 @@ class PressableFill extends Pressable {
   final Widget child;
   final VoidCallback? onPressed;
   final VoidCallback? onLongPressed;
-  final PressableFillTheme theme;
+  final PressableFillTheme? theme;
 
   @override
   _PressableFillState createState() => _PressableFillState();
 }
 
 class _PressableFillState extends PressableBaseState<PressableFill> {
+  PressableFillTheme get theme {
+    return widget.theme ??
+        DefaultPressableTheme.of(context)?.fillTheme ??
+        const PressableFillTheme();
+  }
+
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: widget.onPressed,
       onLongPress: widget.onLongPressed,
       splashFactory: InkRipple.splashFactory,
-      highlightColor: widget.theme.fillColor,
+      highlightColor: theme.fillColor,
       splashColor: Colors.transparent,
-      borderRadius: widget.theme.borderRadius,
+      borderRadius: theme.borderRadius,
       child: widget.child,
     );
   }

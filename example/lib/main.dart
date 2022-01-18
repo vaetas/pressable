@@ -36,7 +36,7 @@ class HomeScreen extends StatelessWidget {
             },
             builder: (context, isPressed) {
               return AnimatedContainer(
-                width: 150,
+                width: 200,
                 height: 50,
                 color: isPressed ? Colors.blue : const Color(0xFFd6d6d6),
                 duration: const Duration(milliseconds: 100),
@@ -106,6 +106,17 @@ class HomeScreen extends StatelessWidget {
               ],
             ),
           ),
+          DefaultPressableTheme(
+            fillTheme: PressableFillTheme(
+              fillColor: Colors.green.withOpacity(0.2),
+            ),
+            child: Pressable.fill(
+              onPressed: () {
+                print('[HomeScreen.build] Default theme pressed');
+              },
+              child: const ExampleButton(title: 'Default theme'),
+            ),
+          ),
         ],
       ),
     );
@@ -123,7 +134,7 @@ class ExampleButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 150,
+      width: 200,
       height: 50,
       padding: const EdgeInsets.symmetric(horizontal: 8),
       color: Colors.black12,

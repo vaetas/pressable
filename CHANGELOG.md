@@ -1,3 +1,8 @@
+## 0.3.0
+
+* Add platform specific Pressable.
+* Add DefaultPressableTheme inherited Widget.
+
 ## 0.2.0
 
 * Extract theme data into separate classes.

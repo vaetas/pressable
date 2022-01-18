@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pressable/pressable.dart';
 import 'package:pressable/src/base.dart';
+import 'package:pressable/src/provider.dart';
 
 class PressableScale extends Pressable {
   const PressableScale({
@@ -14,7 +15,7 @@ class PressableScale extends Pressable {
   final Widget child;
   final VoidCallback? onPressed;
   final VoidCallback? onLongPressed;
-  final PressableScaleTheme theme;
+  final PressableScaleTheme? theme;
 
   @override
   _PressableScaleState createState() => _PressableScaleState();
@@ -23,17 +24,23 @@ class PressableScale extends Pressable {
 class _PressableScaleState extends PressableBaseState<PressableScale>
     with TickerProviderStateMixin {
   late final AnimationController _controller = AnimationController(
-    duration: widget.theme.duration,
+    duration: theme.duration,
     vsync: this,
     value: 1.0,
-    lowerBound: widget.theme.scaleFactor,
+    lowerBound: theme.scaleFactor,
     upperBound: 1.0,
   );
 
   late final Animation<double> _animation = CurvedAnimation(
     parent: _controller,
-    curve: widget.theme.curve,
+    curve: theme.curve,
   );
+
+  PressableScaleTheme get theme {
+    return widget.theme ??
+        DefaultPressableTheme.of(context)?.scaleTheme ??
+        const PressableScaleTheme();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +70,7 @@ class _PressableScaleState extends PressableBaseState<PressableScale>
   @override
   void onPressStarted(TapDownDetails details) {
     super.onPressStarted(details);
-    _controller.animateTo(widget.theme.scaleFactor);
+    _controller.animateTo(theme.scaleFactor);
   }
 
   @override

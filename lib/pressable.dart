@@ -12,6 +12,7 @@ import 'package:pressable/src/theme/theme.dart';
 export 'package:pressable/src/builder.dart';
 export 'package:pressable/src/fill.dart';
 export 'package:pressable/src/opacity.dart';
+export 'package:pressable/src/provider.dart';
 export 'package:pressable/src/ripple.dart';
 export 'package:pressable/src/scale.dart';
 export 'package:pressable/src/theme/theme.dart';
@@ -32,7 +33,7 @@ abstract class Pressable extends StatefulWidget {
       key: key,
       onPressed: onPressed,
       onLongPressed: onLongPressed,
-      theme: theme ?? const PressableRippleTheme(),
+      theme: theme,
       child: child,
     );
   }
@@ -49,7 +50,7 @@ abstract class Pressable extends StatefulWidget {
       key: key,
       onPressed: onPressed,
       onLongPressed: onLongPressed,
-      theme: theme ?? const PressableScaleTheme(),
+      theme: theme,
       child: child,
     );
   }
@@ -67,7 +68,7 @@ abstract class Pressable extends StatefulWidget {
       key: key,
       onPressed: onPressed,
       onLongPressed: onLongPressed,
-      theme: theme ?? const PressableOpacityTheme(),
+      theme: theme,
       child: child,
     );
   }
@@ -88,7 +89,7 @@ abstract class Pressable extends StatefulWidget {
       key: key,
       onPressed: onPressed,
       onLongPressed: onLongPressed,
-      theme: theme ?? const PressableFillTheme(),
+      theme: theme,
       child: child,
     );
   }
