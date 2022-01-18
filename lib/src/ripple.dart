@@ -1,4 +1,3 @@
-import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:pressable/pressable.dart';
 
@@ -33,19 +32,4 @@ class _PressableRippleState extends State<PressableRipple> {
       child: widget.child,
     );
   }
-}
-
-class PressableRippleTheme extends Equatable {
-  const PressableRippleTheme({
-    this.splashColor,
-    this.highlightColor,
-    this.borderRadius,
-  });
-
-  final Color? splashColor;
-  final Color? highlightColor;
-  final BorderRadius? borderRadius;
-
-  @override
-  List<Object?> get props => [splashColor, highlightColor, borderRadius];
 }

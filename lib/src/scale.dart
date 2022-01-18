@@ -1,4 +1,3 @@
-import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:pressable/pressable.dart';
 import 'package:pressable/src/base.dart';
@@ -84,19 +83,4 @@ class _PressableScaleState extends PressableBaseState<PressableScale>
     _controller.dispose();
     super.dispose();
   }
-}
-
-class PressableScaleTheme extends Equatable {
-  const PressableScaleTheme({
-    this.scaleFactor = 0.6,
-    this.duration = const Duration(milliseconds: 100),
-    this.curve = Curves.easeInOut,
-  });
-
-  final double scaleFactor;
-  final Duration duration;
-  final Curve curve;
-
-  @override
-  List<Object?> get props => [scaleFactor, duration, curve];
 }

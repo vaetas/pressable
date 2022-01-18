@@ -73,6 +73,14 @@ class HomeScreen extends StatelessWidget {
             ),
             child: const ExampleButton(title: 'Fill'),
           ),
+          Pressable.platform(
+            onPressed: () {
+              print('[HomeScreen.build] Platform pressed');
+            },
+            ios: const PressableTheme.opacity(),
+            android: const PressableTheme.ripple(),
+            child: const ExampleButton(title: 'Platform'),
+          ),
           SizedBox(
             width: 150,
             child: Stack(

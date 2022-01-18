@@ -1,4 +1,3 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 abstract class PressableBaseState<T extends StatefulWidget> extends State<T> {

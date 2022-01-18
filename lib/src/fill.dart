@@ -1,4 +1,3 @@
-import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:pressable/pressable.dart';
 import 'package:pressable/src/base.dart';
@@ -34,17 +33,4 @@ class _PressableFillState extends PressableBaseState<PressableFill> {
       child: widget.child,
     );
   }
-}
-
-class PressableFillTheme extends Equatable {
-  const PressableFillTheme({
-    this.fillColor = Colors.black38,
-    this.borderRadius = BorderRadius.zero,
-  });
-
-  final Color fillColor;
-  final BorderRadius borderRadius;
-
-  @override
-  List<Object?> get props => [fillColor, borderRadius];
 }

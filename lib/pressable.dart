@@ -4,14 +4,17 @@ import 'package:flutter/material.dart';
 import 'package:pressable/src/builder.dart';
 import 'package:pressable/src/fill.dart';
 import 'package:pressable/src/opacity.dart';
+import 'package:pressable/src/platform.dart';
 import 'package:pressable/src/ripple.dart';
 import 'package:pressable/src/scale.dart';
+import 'package:pressable/src/theme/theme.dart';
 
-export 'package:pressable/src/builder.dart' show PressableBuilderCallback;
-export 'package:pressable/src/fill.dart' show PressableFillTheme;
-export 'package:pressable/src/opacity.dart' show PressableOpacityTheme;
-export 'package:pressable/src/ripple.dart' show PressableRippleTheme;
-export 'package:pressable/src/scale.dart' show PressableScaleTheme;
+export 'package:pressable/src/builder.dart';
+export 'package:pressable/src/fill.dart';
+export 'package:pressable/src/opacity.dart';
+export 'package:pressable/src/ripple.dart';
+export 'package:pressable/src/scale.dart';
+export 'package:pressable/src/theme/theme.dart';
 
 /// Choose named constructors to pick press effect.
 abstract class Pressable extends StatefulWidget {
@@ -86,6 +89,32 @@ abstract class Pressable extends StatefulWidget {
       onPressed: onPressed,
       onLongPressed: onLongPressed,
       theme: theme ?? const PressableFillTheme(),
+      child: child,
+    );
+  }
+
+  /// Provide platform specific [PressableTheme]. You must provide theme for
+  /// current platform otherwise error is thrown.
+  factory Pressable.platform({
+    Key? key,
+    required Widget child,
+    VoidCallback? onPressed,
+    VoidCallback? onLongPressed,
+    PressableTheme? ios,
+    PressableTheme? android,
+    PressableTheme? macOS,
+    PressableTheme? windows,
+    PressableTheme? linux,
+  }) {
+    return PressablePlatform(
+      key: key,
+      ios: ios,
+      macOS: macOS,
+      windows: windows,
+      linux: linux,
+      android: android,
+      onPressed: onPressed,
+      onLongPressed: onLongPressed,
       child: child,
     );
   }

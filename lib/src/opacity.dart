@@ -1,4 +1,3 @@
-import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:pressable/pressable.dart';
 import 'package:pressable/src/base.dart';
@@ -39,21 +38,4 @@ class _PressableOpacityState extends PressableBaseState<PressableOpacity> {
       ),
     );
   }
-}
-
-class PressableOpacityTheme extends Equatable {
-  const PressableOpacityTheme({
-    this.duration = const Duration(milliseconds: 100),
-    this.curve = Curves.linear,
-    this.opacityFactor = 0.6,
-    this.backgroundColor = Colors.transparent,
-  });
-
-  final Duration duration;
-  final double opacityFactor;
-  final Curve curve;
-  final Color backgroundColor;
-
-  @override
-  List<Object?> get props => [duration, opacityFactor, curve, backgroundColor];
 }
