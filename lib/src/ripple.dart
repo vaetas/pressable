@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:pressable/pressable.dart';
-import 'package:pressable/src/provider.dart';
 
 class PressableRipple extends Pressable {
   const PressableRipple({

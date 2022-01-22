@@ -1,3 +1,7 @@
+## 0.3.1
+
+* Fix `PressableBuilder` not calling `onPressed`.
+
 ## 0.3.0
 
 * Add platform specific Pressable.

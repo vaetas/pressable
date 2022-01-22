@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pressable/pressable.dart';
 import 'package:pressable/src/base.dart';
-import 'package:pressable/src/provider.dart';
 
 class PressableOpacity extends Pressable {
   const PressableOpacity({

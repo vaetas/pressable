@@ -27,6 +27,7 @@ class _PressableBuilderState extends PressableBaseState<PressableBuilder> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      onTap: widget.onPressed,
       onTapDown: widget.onPressed != null ? onPressStarted : null,
       onTapUp: widget.onPressed != null ? onPressEnded : null,
       onTapCancel: widget.onPressed != null ? onPressCanceled : null,
