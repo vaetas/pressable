@@ -12,57 +12,7 @@ part of 'theme.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$PressableThemeTearOff {
-  const _$PressableThemeTearOff();
-
-  PressableRippleTheme ripple(
-      {Color? splashColor, Color? highlightColor, BorderRadius? borderRadius}) {
-    return PressableRippleTheme(
-      splashColor: splashColor,
-      highlightColor: highlightColor,
-      borderRadius: borderRadius,
-    );
-  }
-
-  PressableScaleTheme scale(
-      {double scaleFactor = 0.8,
-      Duration duration = const Duration(milliseconds: 100),
-      Curve curve = Curves.easeInOut}) {
-    return PressableScaleTheme(
-      scaleFactor: scaleFactor,
-      duration: duration,
-      curve: curve,
-    );
-  }
-
-  PressableOpacityTheme opacity(
-      {Duration duration = const Duration(milliseconds: 100),
-      double opacityFactor = 0.6,
-      Curve curve = Curves.linear,
-      Color backgroundColor = Colors.transparent}) {
-    return PressableOpacityTheme(
-      duration: duration,
-      opacityFactor: opacityFactor,
-      curve: curve,
-      backgroundColor: backgroundColor,
-    );
-  }
-
-  PressableFillTheme fill(
-      {Color fillColor = Colors.black38,
-      BorderRadius borderRadius = BorderRadius.zero}) {
-    return PressableFillTheme(
-      fillColor: fillColor,
-      borderRadius: borderRadius,
-    );
-  }
-}
-
-/// @nodoc
-const $PressableTheme = _$PressableThemeTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$PressableTheme {
@@ -327,13 +277,13 @@ class _$PressableRippleTheme implements PressableRippleTheme {
 
 abstract class PressableRippleTheme implements PressableTheme {
   const factory PressableRippleTheme(
-      {Color? splashColor,
-      Color? highlightColor,
-      BorderRadius? borderRadius}) = _$PressableRippleTheme;
+      {final Color? splashColor,
+      final Color? highlightColor,
+      final BorderRadius? borderRadius}) = _$PressableRippleTheme;
 
-  Color? get splashColor;
-  Color? get highlightColor;
-  BorderRadius? get borderRadius;
+  Color? get splashColor => throw _privateConstructorUsedError;
+  Color? get highlightColor => throw _privateConstructorUsedError;
+  BorderRadius? get borderRadius => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $PressableRippleThemeCopyWith<PressableRippleTheme> get copyWith =>
       throw _privateConstructorUsedError;
@@ -389,14 +339,14 @@ class _$PressableScaleTheme implements PressableScaleTheme {
       this.duration = const Duration(milliseconds: 100),
       this.curve = Curves.easeInOut});
 
-  @JsonKey()
   @override
+  @JsonKey()
   final double scaleFactor;
-  @JsonKey()
   @override
+  @JsonKey()
   final Duration duration;
-  @JsonKey()
   @override
+  @JsonKey()
   final Curve curve;
 
   @override
@@ -518,13 +468,13 @@ class _$PressableScaleTheme implements PressableScaleTheme {
 
 abstract class PressableScaleTheme implements PressableTheme {
   const factory PressableScaleTheme(
-      {double scaleFactor,
-      Duration duration,
-      Curve curve}) = _$PressableScaleTheme;
+      {final double scaleFactor,
+      final Duration duration,
+      final Curve curve}) = _$PressableScaleTheme;
 
-  double get scaleFactor;
-  Duration get duration;
-  Curve get curve;
+  double get scaleFactor => throw _privateConstructorUsedError;
+  Duration get duration => throw _privateConstructorUsedError;
+  Curve get curve => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $PressableScaleThemeCopyWith<PressableScaleTheme> get copyWith =>
       throw _privateConstructorUsedError;
@@ -590,17 +540,17 @@ class _$PressableOpacityTheme implements PressableOpacityTheme {
       this.curve = Curves.linear,
       this.backgroundColor = Colors.transparent});
 
-  @JsonKey()
   @override
+  @JsonKey()
   final Duration duration;
-  @JsonKey()
   @override
+  @JsonKey()
   final double opacityFactor;
-  @JsonKey()
   @override
+  @JsonKey()
   final Curve curve;
-  @JsonKey()
   @override
+  @JsonKey()
   final Color backgroundColor;
 
   @override
@@ -726,15 +676,15 @@ class _$PressableOpacityTheme implements PressableOpacityTheme {
 
 abstract class PressableOpacityTheme implements PressableTheme {
   const factory PressableOpacityTheme(
-      {Duration duration,
-      double opacityFactor,
-      Curve curve,
-      Color backgroundColor}) = _$PressableOpacityTheme;
+      {final Duration duration,
+      final double opacityFactor,
+      final Curve curve,
+      final Color backgroundColor}) = _$PressableOpacityTheme;
 
-  Duration get duration;
-  double get opacityFactor;
-  Curve get curve;
-  Color get backgroundColor;
+  Duration get duration => throw _privateConstructorUsedError;
+  double get opacityFactor => throw _privateConstructorUsedError;
+  Curve get curve => throw _privateConstructorUsedError;
+  Color get backgroundColor => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $PressableOpacityThemeCopyWith<PressableOpacityTheme> get copyWith =>
       throw _privateConstructorUsedError;
@@ -783,11 +733,11 @@ class _$PressableFillTheme implements PressableFillTheme {
   const _$PressableFillTheme(
       {this.fillColor = Colors.black38, this.borderRadius = BorderRadius.zero});
 
-  @JsonKey()
   @override
+  @JsonKey()
   final Color fillColor;
-  @JsonKey()
   @override
+  @JsonKey()
   final BorderRadius borderRadius;
 
   @override
@@ -907,10 +857,11 @@ class _$PressableFillTheme implements PressableFillTheme {
 
 abstract class PressableFillTheme implements PressableTheme {
   const factory PressableFillTheme(
-      {Color fillColor, BorderRadius borderRadius}) = _$PressableFillTheme;
+      {final Color fillColor,
+      final BorderRadius borderRadius}) = _$PressableFillTheme;
 
-  Color get fillColor;
-  BorderRadius get borderRadius;
+  Color get fillColor => throw _privateConstructorUsedError;
+  BorderRadius get borderRadius => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $PressableFillThemeCopyWith<PressableFillTheme> get copyWith =>
       throw _privateConstructorUsedError;
