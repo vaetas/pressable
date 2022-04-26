@@ -1,3 +1,8 @@
+## 0.4.0
+
+* fix: show full scale animation
+* chore: update dependencies
+
 ## 0.3.1
 
 * Fix `PressableBuilder` not calling `onPressed`.
