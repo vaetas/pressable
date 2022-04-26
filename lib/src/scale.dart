@@ -72,16 +72,34 @@ class _PressableScaleState extends PressableBaseState<PressableScale>
     _controller.animateTo(theme.scaleFactor);
   }
 
+  void _revertAnimation() {
+    _controller.animateTo(1.0);
+  }
+
+  /// Wait for animation end before animating back to the default state.
+  ///
+  /// Used when press is too short to make the animation still visible.
+  void _animationFinishedListener() {
+    if (_controller.isCompleted) {
+      _revertAnimation();
+      _controller.removeListener(_animationFinishedListener);
+    }
+  }
+
   @override
   void onPressEnded(TapUpDetails details) {
     super.onPressEnded(details);
-    _controller.animateTo(1.0);
+    if (_controller.isAnimating) {
+      _controller.addListener(_animationFinishedListener);
+    } else {
+      _revertAnimation();
+    }
   }
 
   @override
   void onPressCanceled() {
     super.onPressCanceled();
-    _controller.animateTo(1.0);
+    _revertAnimation();
   }
 
   @override

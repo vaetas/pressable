@@ -56,6 +56,9 @@ class HomeScreen extends StatelessWidget {
             onPressed: () {
               print('[HomeScreen.build] Scale pressed');
             },
+            // onLongPressed: () {
+            //   print('[HomeScreen.build] Scale long-pressed');
+            // },
             child: const ExampleButton(title: 'Scale'),
           ),
           Pressable.opacity(
