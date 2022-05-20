@@ -16,7 +16,7 @@ class PressableRipple extends Pressable {
   final PressableRippleTheme? theme;
 
   @override
-  _PressableRippleState createState() => _PressableRippleState();
+  State<PressableRipple> createState() => _PressableRippleState();
 }
 
 class _PressableRippleState extends State<PressableRipple> {

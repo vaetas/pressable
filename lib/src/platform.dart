@@ -26,7 +26,7 @@ class PressablePlatform extends Pressable {
   final PressableTheme? linux;
 
   @override
-  _PressablePlatformState createState() => _PressablePlatformState();
+  State<PressablePlatform> createState() => _PressablePlatformState();
 }
 
 class _PressablePlatformState extends State<PressablePlatform> {

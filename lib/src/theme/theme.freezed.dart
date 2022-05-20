@@ -100,24 +100,24 @@ class _$PressableThemeCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class $PressableRippleThemeCopyWith<$Res> {
-  factory $PressableRippleThemeCopyWith(PressableRippleTheme value,
-          $Res Function(PressableRippleTheme) then) =
-      _$PressableRippleThemeCopyWithImpl<$Res>;
+abstract class _$$PressableRippleThemeCopyWith<$Res> {
+  factory _$$PressableRippleThemeCopyWith(_$PressableRippleTheme value,
+          $Res Function(_$PressableRippleTheme) then) =
+      __$$PressableRippleThemeCopyWithImpl<$Res>;
   $Res call(
       {Color? splashColor, Color? highlightColor, BorderRadius? borderRadius});
 }
 
 /// @nodoc
-class _$PressableRippleThemeCopyWithImpl<$Res>
+class __$$PressableRippleThemeCopyWithImpl<$Res>
     extends _$PressableThemeCopyWithImpl<$Res>
-    implements $PressableRippleThemeCopyWith<$Res> {
-  _$PressableRippleThemeCopyWithImpl(
-      PressableRippleTheme _value, $Res Function(PressableRippleTheme) _then)
-      : super(_value, (v) => _then(v as PressableRippleTheme));
+    implements _$$PressableRippleThemeCopyWith<$Res> {
+  __$$PressableRippleThemeCopyWithImpl(_$PressableRippleTheme _value,
+      $Res Function(_$PressableRippleTheme) _then)
+      : super(_value, (v) => _then(v as _$PressableRippleTheme));
 
   @override
-  PressableRippleTheme get _value => super._value as PressableRippleTheme;
+  _$PressableRippleTheme get _value => super._value as _$PressableRippleTheme;
 
   @override
   $Res call({
@@ -125,7 +125,7 @@ class _$PressableRippleThemeCopyWithImpl<$Res>
     Object? highlightColor = freezed,
     Object? borderRadius = freezed,
   }) {
-    return _then(PressableRippleTheme(
+    return _then(_$PressableRippleTheme(
       splashColor: splashColor == freezed
           ? _value.splashColor
           : splashColor // ignore: cast_nullable_to_non_nullable
@@ -164,7 +164,7 @@ class _$PressableRippleTheme implements PressableRippleTheme {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is PressableRippleTheme &&
+            other is _$PressableRippleTheme &&
             const DeepCollectionEquality()
                 .equals(other.splashColor, splashColor) &&
             const DeepCollectionEquality()
@@ -182,8 +182,8 @@ class _$PressableRippleTheme implements PressableRippleTheme {
 
   @JsonKey(ignore: true)
   @override
-  $PressableRippleThemeCopyWith<PressableRippleTheme> get copyWith =>
-      _$PressableRippleThemeCopyWithImpl<PressableRippleTheme>(
+  _$$PressableRippleThemeCopyWith<_$PressableRippleTheme> get copyWith =>
+      __$$PressableRippleThemeCopyWithImpl<_$PressableRippleTheme>(
           this, _$identity);
 
   @override
@@ -285,28 +285,28 @@ abstract class PressableRippleTheme implements PressableTheme {
   Color? get highlightColor => throw _privateConstructorUsedError;
   BorderRadius? get borderRadius => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $PressableRippleThemeCopyWith<PressableRippleTheme> get copyWith =>
+  _$$PressableRippleThemeCopyWith<_$PressableRippleTheme> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $PressableScaleThemeCopyWith<$Res> {
-  factory $PressableScaleThemeCopyWith(
-          PressableScaleTheme value, $Res Function(PressableScaleTheme) then) =
-      _$PressableScaleThemeCopyWithImpl<$Res>;
+abstract class _$$PressableScaleThemeCopyWith<$Res> {
+  factory _$$PressableScaleThemeCopyWith(_$PressableScaleTheme value,
+          $Res Function(_$PressableScaleTheme) then) =
+      __$$PressableScaleThemeCopyWithImpl<$Res>;
   $Res call({double scaleFactor, Duration duration, Curve curve});
 }
 
 /// @nodoc
-class _$PressableScaleThemeCopyWithImpl<$Res>
+class __$$PressableScaleThemeCopyWithImpl<$Res>
     extends _$PressableThemeCopyWithImpl<$Res>
-    implements $PressableScaleThemeCopyWith<$Res> {
-  _$PressableScaleThemeCopyWithImpl(
-      PressableScaleTheme _value, $Res Function(PressableScaleTheme) _then)
-      : super(_value, (v) => _then(v as PressableScaleTheme));
+    implements _$$PressableScaleThemeCopyWith<$Res> {
+  __$$PressableScaleThemeCopyWithImpl(
+      _$PressableScaleTheme _value, $Res Function(_$PressableScaleTheme) _then)
+      : super(_value, (v) => _then(v as _$PressableScaleTheme));
 
   @override
-  PressableScaleTheme get _value => super._value as PressableScaleTheme;
+  _$PressableScaleTheme get _value => super._value as _$PressableScaleTheme;
 
   @override
   $Res call({
@@ -314,7 +314,7 @@ class _$PressableScaleThemeCopyWithImpl<$Res>
     Object? duration = freezed,
     Object? curve = freezed,
   }) {
-    return _then(PressableScaleTheme(
+    return _then(_$PressableScaleTheme(
       scaleFactor: scaleFactor == freezed
           ? _value.scaleFactor
           : scaleFactor // ignore: cast_nullable_to_non_nullable
@@ -358,7 +358,7 @@ class _$PressableScaleTheme implements PressableScaleTheme {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is PressableScaleTheme &&
+            other is _$PressableScaleTheme &&
             const DeepCollectionEquality()
                 .equals(other.scaleFactor, scaleFactor) &&
             const DeepCollectionEquality().equals(other.duration, duration) &&
@@ -374,8 +374,9 @@ class _$PressableScaleTheme implements PressableScaleTheme {
 
   @JsonKey(ignore: true)
   @override
-  $PressableScaleThemeCopyWith<PressableScaleTheme> get copyWith =>
-      _$PressableScaleThemeCopyWithImpl<PressableScaleTheme>(this, _$identity);
+  _$$PressableScaleThemeCopyWith<_$PressableScaleTheme> get copyWith =>
+      __$$PressableScaleThemeCopyWithImpl<_$PressableScaleTheme>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -476,15 +477,15 @@ abstract class PressableScaleTheme implements PressableTheme {
   Duration get duration => throw _privateConstructorUsedError;
   Curve get curve => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $PressableScaleThemeCopyWith<PressableScaleTheme> get copyWith =>
+  _$$PressableScaleThemeCopyWith<_$PressableScaleTheme> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $PressableOpacityThemeCopyWith<$Res> {
-  factory $PressableOpacityThemeCopyWith(PressableOpacityTheme value,
-          $Res Function(PressableOpacityTheme) then) =
-      _$PressableOpacityThemeCopyWithImpl<$Res>;
+abstract class _$$PressableOpacityThemeCopyWith<$Res> {
+  factory _$$PressableOpacityThemeCopyWith(_$PressableOpacityTheme value,
+          $Res Function(_$PressableOpacityTheme) then) =
+      __$$PressableOpacityThemeCopyWithImpl<$Res>;
   $Res call(
       {Duration duration,
       double opacityFactor,
@@ -493,15 +494,15 @@ abstract class $PressableOpacityThemeCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$PressableOpacityThemeCopyWithImpl<$Res>
+class __$$PressableOpacityThemeCopyWithImpl<$Res>
     extends _$PressableThemeCopyWithImpl<$Res>
-    implements $PressableOpacityThemeCopyWith<$Res> {
-  _$PressableOpacityThemeCopyWithImpl(
-      PressableOpacityTheme _value, $Res Function(PressableOpacityTheme) _then)
-      : super(_value, (v) => _then(v as PressableOpacityTheme));
+    implements _$$PressableOpacityThemeCopyWith<$Res> {
+  __$$PressableOpacityThemeCopyWithImpl(_$PressableOpacityTheme _value,
+      $Res Function(_$PressableOpacityTheme) _then)
+      : super(_value, (v) => _then(v as _$PressableOpacityTheme));
 
   @override
-  PressableOpacityTheme get _value => super._value as PressableOpacityTheme;
+  _$PressableOpacityTheme get _value => super._value as _$PressableOpacityTheme;
 
   @override
   $Res call({
@@ -510,7 +511,7 @@ class _$PressableOpacityThemeCopyWithImpl<$Res>
     Object? curve = freezed,
     Object? backgroundColor = freezed,
   }) {
-    return _then(PressableOpacityTheme(
+    return _then(_$PressableOpacityTheme(
       duration: duration == freezed
           ? _value.duration
           : duration // ignore: cast_nullable_to_non_nullable
@@ -562,7 +563,7 @@ class _$PressableOpacityTheme implements PressableOpacityTheme {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is PressableOpacityTheme &&
+            other is _$PressableOpacityTheme &&
             const DeepCollectionEquality().equals(other.duration, duration) &&
             const DeepCollectionEquality()
                 .equals(other.opacityFactor, opacityFactor) &&
@@ -581,8 +582,8 @@ class _$PressableOpacityTheme implements PressableOpacityTheme {
 
   @JsonKey(ignore: true)
   @override
-  $PressableOpacityThemeCopyWith<PressableOpacityTheme> get copyWith =>
-      _$PressableOpacityThemeCopyWithImpl<PressableOpacityTheme>(
+  _$$PressableOpacityThemeCopyWith<_$PressableOpacityTheme> get copyWith =>
+      __$$PressableOpacityThemeCopyWithImpl<_$PressableOpacityTheme>(
           this, _$identity);
 
   @override
@@ -686,35 +687,35 @@ abstract class PressableOpacityTheme implements PressableTheme {
   Curve get curve => throw _privateConstructorUsedError;
   Color get backgroundColor => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $PressableOpacityThemeCopyWith<PressableOpacityTheme> get copyWith =>
+  _$$PressableOpacityThemeCopyWith<_$PressableOpacityTheme> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $PressableFillThemeCopyWith<$Res> {
-  factory $PressableFillThemeCopyWith(
-          PressableFillTheme value, $Res Function(PressableFillTheme) then) =
-      _$PressableFillThemeCopyWithImpl<$Res>;
+abstract class _$$PressableFillThemeCopyWith<$Res> {
+  factory _$$PressableFillThemeCopyWith(_$PressableFillTheme value,
+          $Res Function(_$PressableFillTheme) then) =
+      __$$PressableFillThemeCopyWithImpl<$Res>;
   $Res call({Color fillColor, BorderRadius borderRadius});
 }
 
 /// @nodoc
-class _$PressableFillThemeCopyWithImpl<$Res>
+class __$$PressableFillThemeCopyWithImpl<$Res>
     extends _$PressableThemeCopyWithImpl<$Res>
-    implements $PressableFillThemeCopyWith<$Res> {
-  _$PressableFillThemeCopyWithImpl(
-      PressableFillTheme _value, $Res Function(PressableFillTheme) _then)
-      : super(_value, (v) => _then(v as PressableFillTheme));
+    implements _$$PressableFillThemeCopyWith<$Res> {
+  __$$PressableFillThemeCopyWithImpl(
+      _$PressableFillTheme _value, $Res Function(_$PressableFillTheme) _then)
+      : super(_value, (v) => _then(v as _$PressableFillTheme));
 
   @override
-  PressableFillTheme get _value => super._value as PressableFillTheme;
+  _$PressableFillTheme get _value => super._value as _$PressableFillTheme;
 
   @override
   $Res call({
     Object? fillColor = freezed,
     Object? borderRadius = freezed,
   }) {
-    return _then(PressableFillTheme(
+    return _then(_$PressableFillTheme(
       fillColor: fillColor == freezed
           ? _value.fillColor
           : fillColor // ignore: cast_nullable_to_non_nullable
@@ -749,7 +750,7 @@ class _$PressableFillTheme implements PressableFillTheme {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is PressableFillTheme &&
+            other is _$PressableFillTheme &&
             const DeepCollectionEquality().equals(other.fillColor, fillColor) &&
             const DeepCollectionEquality()
                 .equals(other.borderRadius, borderRadius));
@@ -763,8 +764,9 @@ class _$PressableFillTheme implements PressableFillTheme {
 
   @JsonKey(ignore: true)
   @override
-  $PressableFillThemeCopyWith<PressableFillTheme> get copyWith =>
-      _$PressableFillThemeCopyWithImpl<PressableFillTheme>(this, _$identity);
+  _$$PressableFillThemeCopyWith<_$PressableFillTheme> get copyWith =>
+      __$$PressableFillThemeCopyWithImpl<_$PressableFillTheme>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -863,6 +865,6 @@ abstract class PressableFillTheme implements PressableTheme {
   Color get fillColor => throw _privateConstructorUsedError;
   BorderRadius get borderRadius => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $PressableFillThemeCopyWith<PressableFillTheme> get copyWith =>
+  _$$PressableFillThemeCopyWith<_$PressableFillTheme> get copyWith =>
       throw _privateConstructorUsedError;
 }

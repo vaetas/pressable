@@ -20,7 +20,8 @@ class PressableBuilder extends Pressable {
   final VoidCallback? onLongPressed;
 
   @override
-  _PressableBuilderState createState() => _PressableBuilderState();
+  PressableBaseState<PressableBuilder> createState() =>
+      _PressableBuilderState();
 }
 
 class _PressableBuilderState extends PressableBaseState<PressableBuilder> {

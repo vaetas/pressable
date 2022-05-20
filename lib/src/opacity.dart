@@ -17,7 +17,8 @@ class PressableOpacity extends Pressable {
   final PressableOpacityTheme? theme;
 
   @override
-  _PressableOpacityState createState() => _PressableOpacityState();
+  PressableBaseState<PressableOpacity> createState() =>
+      _PressableOpacityState();
 }
 
 class _PressableOpacityState extends PressableBaseState<PressableOpacity> {

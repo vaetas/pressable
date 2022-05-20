@@ -17,7 +17,7 @@ class PressableFill extends Pressable {
   final PressableFillTheme? theme;
 
   @override
-  _PressableFillState createState() => _PressableFillState();
+  PressableBaseState<PressableFill> createState() => _PressableFillState();
 }
 
 class _PressableFillState extends PressableBaseState<PressableFill> {

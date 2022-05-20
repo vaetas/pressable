@@ -17,7 +17,7 @@ class PressableScale extends Pressable {
   final PressableScaleTheme? theme;
 
   @override
-  _PressableScaleState createState() => _PressableScaleState();
+  PressableBaseState<PressableScale> createState() => _PressableScaleState();
 }
 
 class _PressableScaleState extends PressableBaseState<PressableScale>
