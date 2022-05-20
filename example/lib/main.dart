@@ -65,6 +65,10 @@ class HomeScreen extends StatelessWidget {
             onPressed: () {
               print('[HomeScreen.build] Opacity pressed');
             },
+            theme: PressableOpacityTheme(
+              curve: Curves.easeOut,
+              opacityFactor: 0.5,
+            ),
             child: const ExampleButton(title: 'Opacity'),
           ),
           Pressable.fill(

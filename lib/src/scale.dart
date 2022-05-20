@@ -33,6 +33,7 @@ class _PressableScaleState extends PressableBaseState<PressableScale>
   late final Animation<double> _animation = CurvedAnimation(
     parent: _controller,
     curve: theme.curve,
+    reverseCurve: theme.reverseCurve,
   );
 
   PressableScaleTheme get theme {

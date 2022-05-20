@@ -21,11 +21,11 @@ mixin _$PressableTheme {
     required TResult Function(Color? splashColor, Color? highlightColor,
             BorderRadius? borderRadius)
         ripple,
-    required TResult Function(
-            double scaleFactor, Duration duration, Curve curve)
+    required TResult Function(double scaleFactor, Duration duration,
+            Curve curve, Curve reverseCurve)
         scale,
     required TResult Function(Duration duration, double opacityFactor,
-            Curve curve, Color backgroundColor)
+            Curve curve, Curve reverseCurve)
         opacity,
     required TResult Function(Color fillColor, BorderRadius borderRadius) fill,
   }) =>
@@ -35,9 +35,11 @@ mixin _$PressableTheme {
     TResult Function(Color? splashColor, Color? highlightColor,
             BorderRadius? borderRadius)?
         ripple,
-    TResult Function(double scaleFactor, Duration duration, Curve curve)? scale,
+    TResult Function(double scaleFactor, Duration duration, Curve curve,
+            Curve reverseCurve)?
+        scale,
     TResult Function(Duration duration, double opacityFactor, Curve curve,
-            Color backgroundColor)?
+            Curve reverseCurve)?
         opacity,
     TResult Function(Color fillColor, BorderRadius borderRadius)? fill,
   }) =>
@@ -47,9 +49,11 @@ mixin _$PressableTheme {
     TResult Function(Color? splashColor, Color? highlightColor,
             BorderRadius? borderRadius)?
         ripple,
-    TResult Function(double scaleFactor, Duration duration, Curve curve)? scale,
+    TResult Function(double scaleFactor, Duration duration, Curve curve,
+            Curve reverseCurve)?
+        scale,
     TResult Function(Duration duration, double opacityFactor, Curve curve,
-            Color backgroundColor)?
+            Curve reverseCurve)?
         opacity,
     TResult Function(Color fillColor, BorderRadius borderRadius)? fill,
     required TResult orElse(),
@@ -192,11 +196,11 @@ class _$PressableRippleTheme implements PressableRippleTheme {
     required TResult Function(Color? splashColor, Color? highlightColor,
             BorderRadius? borderRadius)
         ripple,
-    required TResult Function(
-            double scaleFactor, Duration duration, Curve curve)
+    required TResult Function(double scaleFactor, Duration duration,
+            Curve curve, Curve reverseCurve)
         scale,
     required TResult Function(Duration duration, double opacityFactor,
-            Curve curve, Color backgroundColor)
+            Curve curve, Curve reverseCurve)
         opacity,
     required TResult Function(Color fillColor, BorderRadius borderRadius) fill,
   }) {
@@ -209,9 +213,11 @@ class _$PressableRippleTheme implements PressableRippleTheme {
     TResult Function(Color? splashColor, Color? highlightColor,
             BorderRadius? borderRadius)?
         ripple,
-    TResult Function(double scaleFactor, Duration duration, Curve curve)? scale,
+    TResult Function(double scaleFactor, Duration duration, Curve curve,
+            Curve reverseCurve)?
+        scale,
     TResult Function(Duration duration, double opacityFactor, Curve curve,
-            Color backgroundColor)?
+            Curve reverseCurve)?
         opacity,
     TResult Function(Color fillColor, BorderRadius borderRadius)? fill,
   }) {
@@ -224,9 +230,11 @@ class _$PressableRippleTheme implements PressableRippleTheme {
     TResult Function(Color? splashColor, Color? highlightColor,
             BorderRadius? borderRadius)?
         ripple,
-    TResult Function(double scaleFactor, Duration duration, Curve curve)? scale,
+    TResult Function(double scaleFactor, Duration duration, Curve curve,
+            Curve reverseCurve)?
+        scale,
     TResult Function(Duration duration, double opacityFactor, Curve curve,
-            Color backgroundColor)?
+            Curve reverseCurve)?
         opacity,
     TResult Function(Color fillColor, BorderRadius borderRadius)? fill,
     required TResult orElse(),
@@ -294,7 +302,8 @@ abstract class _$$PressableScaleThemeCopyWith<$Res> {
   factory _$$PressableScaleThemeCopyWith(_$PressableScaleTheme value,
           $Res Function(_$PressableScaleTheme) then) =
       __$$PressableScaleThemeCopyWithImpl<$Res>;
-  $Res call({double scaleFactor, Duration duration, Curve curve});
+  $Res call(
+      {double scaleFactor, Duration duration, Curve curve, Curve reverseCurve});
 }
 
 /// @nodoc
@@ -313,6 +322,7 @@ class __$$PressableScaleThemeCopyWithImpl<$Res>
     Object? scaleFactor = freezed,
     Object? duration = freezed,
     Object? curve = freezed,
+    Object? reverseCurve = freezed,
   }) {
     return _then(_$PressableScaleTheme(
       scaleFactor: scaleFactor == freezed
@@ -327,6 +337,10 @@ class __$$PressableScaleThemeCopyWithImpl<$Res>
           ? _value.curve
           : curve // ignore: cast_nullable_to_non_nullable
               as Curve,
+      reverseCurve: reverseCurve == freezed
+          ? _value.reverseCurve
+          : reverseCurve // ignore: cast_nullable_to_non_nullable
+              as Curve,
     ));
   }
 }
@@ -337,7 +351,8 @@ class _$PressableScaleTheme implements PressableScaleTheme {
   const _$PressableScaleTheme(
       {this.scaleFactor = 0.8,
       this.duration = const Duration(milliseconds: 100),
-      this.curve = Curves.easeInOut});
+      this.curve = Curves.easeInOut,
+      this.reverseCurve = Curves.easeInOut});
 
   @override
   @JsonKey()
@@ -348,10 +363,13 @@ class _$PressableScaleTheme implements PressableScaleTheme {
   @override
   @JsonKey()
   final Curve curve;
+  @override
+  @JsonKey()
+  final Curve reverseCurve;
 
   @override
   String toString() {
-    return 'PressableTheme.scale(scaleFactor: $scaleFactor, duration: $duration, curve: $curve)';
+    return 'PressableTheme.scale(scaleFactor: $scaleFactor, duration: $duration, curve: $curve, reverseCurve: $reverseCurve)';
   }
 
   @override
@@ -362,7 +380,9 @@ class _$PressableScaleTheme implements PressableScaleTheme {
             const DeepCollectionEquality()
                 .equals(other.scaleFactor, scaleFactor) &&
             const DeepCollectionEquality().equals(other.duration, duration) &&
-            const DeepCollectionEquality().equals(other.curve, curve));
+            const DeepCollectionEquality().equals(other.curve, curve) &&
+            const DeepCollectionEquality()
+                .equals(other.reverseCurve, reverseCurve));
   }
 
   @override
@@ -370,7 +390,8 @@ class _$PressableScaleTheme implements PressableScaleTheme {
       runtimeType,
       const DeepCollectionEquality().hash(scaleFactor),
       const DeepCollectionEquality().hash(duration),
-      const DeepCollectionEquality().hash(curve));
+      const DeepCollectionEquality().hash(curve),
+      const DeepCollectionEquality().hash(reverseCurve));
 
   @JsonKey(ignore: true)
   @override
@@ -384,15 +405,15 @@ class _$PressableScaleTheme implements PressableScaleTheme {
     required TResult Function(Color? splashColor, Color? highlightColor,
             BorderRadius? borderRadius)
         ripple,
-    required TResult Function(
-            double scaleFactor, Duration duration, Curve curve)
+    required TResult Function(double scaleFactor, Duration duration,
+            Curve curve, Curve reverseCurve)
         scale,
     required TResult Function(Duration duration, double opacityFactor,
-            Curve curve, Color backgroundColor)
+            Curve curve, Curve reverseCurve)
         opacity,
     required TResult Function(Color fillColor, BorderRadius borderRadius) fill,
   }) {
-    return scale(scaleFactor, duration, curve);
+    return scale(scaleFactor, duration, curve, reverseCurve);
   }
 
   @override
@@ -401,13 +422,15 @@ class _$PressableScaleTheme implements PressableScaleTheme {
     TResult Function(Color? splashColor, Color? highlightColor,
             BorderRadius? borderRadius)?
         ripple,
-    TResult Function(double scaleFactor, Duration duration, Curve curve)? scale,
+    TResult Function(double scaleFactor, Duration duration, Curve curve,
+            Curve reverseCurve)?
+        scale,
     TResult Function(Duration duration, double opacityFactor, Curve curve,
-            Color backgroundColor)?
+            Curve reverseCurve)?
         opacity,
     TResult Function(Color fillColor, BorderRadius borderRadius)? fill,
   }) {
-    return scale?.call(scaleFactor, duration, curve);
+    return scale?.call(scaleFactor, duration, curve, reverseCurve);
   }
 
   @override
@@ -416,15 +439,17 @@ class _$PressableScaleTheme implements PressableScaleTheme {
     TResult Function(Color? splashColor, Color? highlightColor,
             BorderRadius? borderRadius)?
         ripple,
-    TResult Function(double scaleFactor, Duration duration, Curve curve)? scale,
+    TResult Function(double scaleFactor, Duration duration, Curve curve,
+            Curve reverseCurve)?
+        scale,
     TResult Function(Duration duration, double opacityFactor, Curve curve,
-            Color backgroundColor)?
+            Curve reverseCurve)?
         opacity,
     TResult Function(Color fillColor, BorderRadius borderRadius)? fill,
     required TResult orElse(),
   }) {
     if (scale != null) {
-      return scale(scaleFactor, duration, curve);
+      return scale(scaleFactor, duration, curve, reverseCurve);
     }
     return orElse();
   }
@@ -471,11 +496,13 @@ abstract class PressableScaleTheme implements PressableTheme {
   const factory PressableScaleTheme(
       {final double scaleFactor,
       final Duration duration,
-      final Curve curve}) = _$PressableScaleTheme;
+      final Curve curve,
+      final Curve reverseCurve}) = _$PressableScaleTheme;
 
   double get scaleFactor => throw _privateConstructorUsedError;
   Duration get duration => throw _privateConstructorUsedError;
   Curve get curve => throw _privateConstructorUsedError;
+  Curve get reverseCurve => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   _$$PressableScaleThemeCopyWith<_$PressableScaleTheme> get copyWith =>
       throw _privateConstructorUsedError;
@@ -490,7 +517,7 @@ abstract class _$$PressableOpacityThemeCopyWith<$Res> {
       {Duration duration,
       double opacityFactor,
       Curve curve,
-      Color backgroundColor});
+      Curve reverseCurve});
 }
 
 /// @nodoc
@@ -509,7 +536,7 @@ class __$$PressableOpacityThemeCopyWithImpl<$Res>
     Object? duration = freezed,
     Object? opacityFactor = freezed,
     Object? curve = freezed,
-    Object? backgroundColor = freezed,
+    Object? reverseCurve = freezed,
   }) {
     return _then(_$PressableOpacityTheme(
       duration: duration == freezed
@@ -524,10 +551,10 @@ class __$$PressableOpacityThemeCopyWithImpl<$Res>
           ? _value.curve
           : curve // ignore: cast_nullable_to_non_nullable
               as Curve,
-      backgroundColor: backgroundColor == freezed
-          ? _value.backgroundColor
-          : backgroundColor // ignore: cast_nullable_to_non_nullable
-              as Color,
+      reverseCurve: reverseCurve == freezed
+          ? _value.reverseCurve
+          : reverseCurve // ignore: cast_nullable_to_non_nullable
+              as Curve,
     ));
   }
 }
@@ -538,8 +565,8 @@ class _$PressableOpacityTheme implements PressableOpacityTheme {
   const _$PressableOpacityTheme(
       {this.duration = const Duration(milliseconds: 100),
       this.opacityFactor = 0.6,
-      this.curve = Curves.linear,
-      this.backgroundColor = Colors.transparent});
+      this.curve = Curves.easeInOut,
+      this.reverseCurve = Curves.easeInOut});
 
   @override
   @JsonKey()
@@ -552,11 +579,11 @@ class _$PressableOpacityTheme implements PressableOpacityTheme {
   final Curve curve;
   @override
   @JsonKey()
-  final Color backgroundColor;
+  final Curve reverseCurve;
 
   @override
   String toString() {
-    return 'PressableTheme.opacity(duration: $duration, opacityFactor: $opacityFactor, curve: $curve, backgroundColor: $backgroundColor)';
+    return 'PressableTheme.opacity(duration: $duration, opacityFactor: $opacityFactor, curve: $curve, reverseCurve: $reverseCurve)';
   }
 
   @override
@@ -569,7 +596,7 @@ class _$PressableOpacityTheme implements PressableOpacityTheme {
                 .equals(other.opacityFactor, opacityFactor) &&
             const DeepCollectionEquality().equals(other.curve, curve) &&
             const DeepCollectionEquality()
-                .equals(other.backgroundColor, backgroundColor));
+                .equals(other.reverseCurve, reverseCurve));
   }
 
   @override
@@ -578,7 +605,7 @@ class _$PressableOpacityTheme implements PressableOpacityTheme {
       const DeepCollectionEquality().hash(duration),
       const DeepCollectionEquality().hash(opacityFactor),
       const DeepCollectionEquality().hash(curve),
-      const DeepCollectionEquality().hash(backgroundColor));
+      const DeepCollectionEquality().hash(reverseCurve));
 
   @JsonKey(ignore: true)
   @override
@@ -592,15 +619,15 @@ class _$PressableOpacityTheme implements PressableOpacityTheme {
     required TResult Function(Color? splashColor, Color? highlightColor,
             BorderRadius? borderRadius)
         ripple,
-    required TResult Function(
-            double scaleFactor, Duration duration, Curve curve)
+    required TResult Function(double scaleFactor, Duration duration,
+            Curve curve, Curve reverseCurve)
         scale,
     required TResult Function(Duration duration, double opacityFactor,
-            Curve curve, Color backgroundColor)
+            Curve curve, Curve reverseCurve)
         opacity,
     required TResult Function(Color fillColor, BorderRadius borderRadius) fill,
   }) {
-    return opacity(duration, opacityFactor, curve, backgroundColor);
+    return opacity(duration, opacityFactor, curve, reverseCurve);
   }
 
   @override
@@ -609,13 +636,15 @@ class _$PressableOpacityTheme implements PressableOpacityTheme {
     TResult Function(Color? splashColor, Color? highlightColor,
             BorderRadius? borderRadius)?
         ripple,
-    TResult Function(double scaleFactor, Duration duration, Curve curve)? scale,
+    TResult Function(double scaleFactor, Duration duration, Curve curve,
+            Curve reverseCurve)?
+        scale,
     TResult Function(Duration duration, double opacityFactor, Curve curve,
-            Color backgroundColor)?
+            Curve reverseCurve)?
         opacity,
     TResult Function(Color fillColor, BorderRadius borderRadius)? fill,
   }) {
-    return opacity?.call(duration, opacityFactor, curve, backgroundColor);
+    return opacity?.call(duration, opacityFactor, curve, reverseCurve);
   }
 
   @override
@@ -624,15 +653,17 @@ class _$PressableOpacityTheme implements PressableOpacityTheme {
     TResult Function(Color? splashColor, Color? highlightColor,
             BorderRadius? borderRadius)?
         ripple,
-    TResult Function(double scaleFactor, Duration duration, Curve curve)? scale,
+    TResult Function(double scaleFactor, Duration duration, Curve curve,
+            Curve reverseCurve)?
+        scale,
     TResult Function(Duration duration, double opacityFactor, Curve curve,
-            Color backgroundColor)?
+            Curve reverseCurve)?
         opacity,
     TResult Function(Color fillColor, BorderRadius borderRadius)? fill,
     required TResult orElse(),
   }) {
     if (opacity != null) {
-      return opacity(duration, opacityFactor, curve, backgroundColor);
+      return opacity(duration, opacityFactor, curve, reverseCurve);
     }
     return orElse();
   }
@@ -680,12 +711,12 @@ abstract class PressableOpacityTheme implements PressableTheme {
       {final Duration duration,
       final double opacityFactor,
       final Curve curve,
-      final Color backgroundColor}) = _$PressableOpacityTheme;
+      final Curve reverseCurve}) = _$PressableOpacityTheme;
 
   Duration get duration => throw _privateConstructorUsedError;
   double get opacityFactor => throw _privateConstructorUsedError;
   Curve get curve => throw _privateConstructorUsedError;
-  Color get backgroundColor => throw _privateConstructorUsedError;
+  Curve get reverseCurve => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   _$$PressableOpacityThemeCopyWith<_$PressableOpacityTheme> get copyWith =>
       throw _privateConstructorUsedError;
@@ -774,11 +805,11 @@ class _$PressableFillTheme implements PressableFillTheme {
     required TResult Function(Color? splashColor, Color? highlightColor,
             BorderRadius? borderRadius)
         ripple,
-    required TResult Function(
-            double scaleFactor, Duration duration, Curve curve)
+    required TResult Function(double scaleFactor, Duration duration,
+            Curve curve, Curve reverseCurve)
         scale,
     required TResult Function(Duration duration, double opacityFactor,
-            Curve curve, Color backgroundColor)
+            Curve curve, Curve reverseCurve)
         opacity,
     required TResult Function(Color fillColor, BorderRadius borderRadius) fill,
   }) {
@@ -791,9 +822,11 @@ class _$PressableFillTheme implements PressableFillTheme {
     TResult Function(Color? splashColor, Color? highlightColor,
             BorderRadius? borderRadius)?
         ripple,
-    TResult Function(double scaleFactor, Duration duration, Curve curve)? scale,
+    TResult Function(double scaleFactor, Duration duration, Curve curve,
+            Curve reverseCurve)?
+        scale,
     TResult Function(Duration duration, double opacityFactor, Curve curve,
-            Color backgroundColor)?
+            Curve reverseCurve)?
         opacity,
     TResult Function(Color fillColor, BorderRadius borderRadius)? fill,
   }) {
@@ -806,9 +839,11 @@ class _$PressableFillTheme implements PressableFillTheme {
     TResult Function(Color? splashColor, Color? highlightColor,
             BorderRadius? borderRadius)?
         ripple,
-    TResult Function(double scaleFactor, Duration duration, Curve curve)? scale,
+    TResult Function(double scaleFactor, Duration duration, Curve curve,
+            Curve reverseCurve)?
+        scale,
     TResult Function(Duration duration, double opacityFactor, Curve curve,
-            Color backgroundColor)?
+            Curve reverseCurve)?
         opacity,
     TResult Function(Color fillColor, BorderRadius borderRadius)? fill,
     required TResult orElse(),
