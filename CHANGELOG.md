@@ -1,3 +1,9 @@
+## 0.5.0
+
+* fix: update widget animation when properties change
+* fix: animate back opacity animation on cancel
+* chore: update dependencies
+
 ## 0.4.0
 
 * fix: show full scale animation
