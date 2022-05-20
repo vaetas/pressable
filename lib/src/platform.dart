@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:pressable/pressable.dart';
 
+/// Define default [Pressable] animation for each platform.
 class PressablePlatform extends Pressable {
   const PressablePlatform({
     Key? key,

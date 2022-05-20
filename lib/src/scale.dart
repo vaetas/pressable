@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pressable/pressable.dart';
 import 'package:pressable/src/base.dart';
 
+/// Scales [child] down when pressed.
 class PressableScale extends Pressable {
   const PressableScale({
     Key? key,
@@ -22,19 +23,9 @@ class PressableScale extends Pressable {
 
 class _PressableScaleState extends PressableBaseState<PressableScale>
     with TickerProviderStateMixin {
-  late final AnimationController _controller = AnimationController(
-    duration: theme.duration,
-    vsync: this,
-    value: 1.0,
-    lowerBound: theme.scaleFactor,
-    upperBound: 1.0,
-  );
+  late AnimationController _controller = _createAnimationController();
 
-  late final Animation<double> _animation = CurvedAnimation(
-    parent: _controller,
-    curve: theme.curve,
-    reverseCurve: theme.reverseCurve,
-  );
+  late Animation<double> _animation = _createAnimation();
 
   PressableScaleTheme get theme {
     return widget.theme ??
@@ -44,6 +35,8 @@ class _PressableScaleState extends PressableBaseState<PressableScale>
 
   @override
   Widget build(BuildContext context) {
+    assert(theme.scaleFactor < 1.0, 'Scale factor must be less than 1.0');
+
     return GestureDetector(
       onTap: widget.onPressed,
       onTapDown: widget.onPressed != null ? onPressStarted : null,
@@ -101,6 +94,34 @@ class _PressableScaleState extends PressableBaseState<PressableScale>
   void onPressCanceled() {
     super.onPressCanceled();
     _revertAnimation();
+  }
+
+  AnimationController _createAnimationController() {
+    return AnimationController(
+      duration: theme.duration,
+      vsync: this,
+      value: 1.0,
+      lowerBound: theme.scaleFactor,
+      upperBound: 1.0,
+    );
+  }
+
+  CurvedAnimation _createAnimation() {
+    return CurvedAnimation(
+      parent: _controller,
+      curve: theme.curve,
+      reverseCurve: theme.reverseCurve,
+    );
+  }
+
+  @override
+  void didUpdateWidget(covariant PressableScale oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.theme != widget.theme) {
+      _controller.dispose();
+      _controller = _createAnimationController();
+      _animation = _createAnimation();
+    }
   }
 
   @override

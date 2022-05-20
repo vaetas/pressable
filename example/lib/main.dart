@@ -56,6 +56,9 @@ class HomeScreen extends StatelessWidget {
             onPressed: () {
               print('[HomeScreen.build] Scale pressed');
             },
+            theme: const PressableScaleTheme(
+              scaleFactor: 0.8,
+            ),
             // onLongPressed: () {
             //   print('[HomeScreen.build] Scale long-pressed');
             // },
@@ -65,9 +68,9 @@ class HomeScreen extends StatelessWidget {
             onPressed: () {
               print('[HomeScreen.build] Opacity pressed');
             },
-            theme: PressableOpacityTheme(
+            theme: const PressableOpacityTheme(
               curve: Curves.easeOut,
-              opacityFactor: 0.5,
+              opacityFactor: 0.4,
             ),
             child: const ExampleButton(title: 'Opacity'),
           ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pressable/pressable.dart';
 
+/// Uses default [InkWell] animation.
 class PressableRipple extends Pressable {
   const PressableRipple({
     Key? key,

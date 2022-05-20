@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pressable/pressable.dart';
 import 'package:pressable/src/base.dart';
 
+/// Fills [child] with selected color when pressed.
 class PressableFill extends Pressable {
   const PressableFill({
     Key? key,

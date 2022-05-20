@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pressable/pressable.dart';
 import 'package:pressable/src/base.dart';
 
-/// Makes [child] transparent.
+/// Makes [child] semi-transparent when pressed.
 class PressableOpacity extends Pressable {
   const PressableOpacity({
     Key? key,
@@ -24,19 +24,9 @@ class PressableOpacity extends Pressable {
 
 class _PressableOpacityState extends PressableBaseState<PressableOpacity>
     with TickerProviderStateMixin {
-  late final AnimationController _controller = AnimationController(
-    duration: theme.duration,
-    vsync: this,
-    value: 1.0,
-    lowerBound: theme.opacityFactor,
-    upperBound: 1.0,
-  );
+  late AnimationController _controller = _createAnimationController();
 
-  late final Animation<double> _animation = CurvedAnimation(
-    parent: _controller,
-    curve: theme.curve,
-    reverseCurve: theme.reverseCurve,
-  );
+  late Animation<double> _animation = _createAnimation();
 
   PressableOpacityTheme get theme {
     return widget.theme ??
@@ -46,6 +36,8 @@ class _PressableOpacityState extends PressableBaseState<PressableOpacity>
 
   @override
   Widget build(BuildContext context) {
+    assert(theme.opacityFactor < 1.0, 'Opacity factor must be less than 1.0');
+
     return GestureDetector(
       onTap: widget.onPressed,
       onTapDown: widget.onPressed != null ? onPressStarted : null,
@@ -99,6 +91,34 @@ class _PressableOpacityState extends PressableBaseState<PressableOpacity>
   void onPressCanceled() {
     super.onPressCanceled();
     _revertAnimation();
+  }
+
+  AnimationController _createAnimationController() {
+    return AnimationController(
+      duration: theme.duration,
+      vsync: this,
+      value: 1.0,
+      lowerBound: theme.opacityFactor,
+      upperBound: 1.0,
+    );
+  }
+
+  CurvedAnimation _createAnimation() {
+    return CurvedAnimation(
+      parent: _controller,
+      curve: theme.curve,
+      reverseCurve: theme.reverseCurve,
+    );
+  }
+
+  @override
+  void didUpdateWidget(covariant PressableOpacity oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.theme != widget.theme) {
+      _controller.dispose();
+      _controller = _createAnimationController();
+      _animation = _createAnimation();
+    }
   }
 
   @override

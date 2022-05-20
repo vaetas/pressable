@@ -2,11 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:pressable/pressable.dart';
 import 'package:pressable/src/base.dart';
 
+/// Builds [Widget] inside [PressableBuilder].
 typedef PressableBuilderCallback = Widget Function(
   BuildContext context,
   bool isPressed,
 );
 
+/// Use [PressableBuilder] to define your own pressable animation. Simplifies
+/// working with [GestureDetector].
 class PressableBuilder extends Pressable {
   const PressableBuilder({
     Key? key,
