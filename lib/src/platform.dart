@@ -1,4 +1,4 @@
-import 'dart:io';
+import 'dart:io' as io;
 
 import 'package:flutter/material.dart';
 import 'package:pressable/pressable.dart';
@@ -34,19 +34,19 @@ class _PressablePlatformState extends State<PressablePlatform> {
   @override
   Widget build(BuildContext context) {
     PressableTheme? pressable;
-    if (Platform.isIOS) {
+    if (io.Platform.isIOS) {
       pressable = widget.ios;
     }
-    if (Platform.isAndroid) {
+    if (io.Platform.isAndroid) {
       pressable = widget.android;
     }
-    if (Platform.isMacOS) {
+    if (io.Platform.isMacOS) {
       pressable = widget.macOS;
     }
-    if (Platform.isWindows) {
+    if (io.Platform.isWindows) {
       pressable = widget.windows;
     }
-    if (Platform.isLinux) {
+    if (io.Platform.isLinux) {
       pressable = widget.linux;
     }
 
