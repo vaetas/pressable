@@ -5,12 +5,12 @@ import 'package:pressable/src/base.dart';
 /// Makes [child] semi-transparent when pressed.
 class PressableOpacity extends Pressable {
   const PressableOpacity({
-    Key? key,
+    super.key,
     required this.child,
     this.onPressed,
     this.onLongPressed,
     this.theme = const PressableOpacityTheme(),
-  }) : super(key: key);
+  });
 
   final Widget child;
   final VoidCallback? onPressed;

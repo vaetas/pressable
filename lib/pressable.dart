@@ -1,4 +1,4 @@
-library pressable;
+library;
 
 import 'package:flutter/material.dart';
 import 'package:pressable/src/builder.dart';
@@ -19,7 +19,7 @@ export 'package:pressable/src/theme/theme.dart';
 
 /// Choose named constructors to pick press effect.
 abstract class Pressable extends StatefulWidget {
-  const Pressable({Key? key}) : super(key: key);
+  const Pressable({super.key});
 
   /// Uses the [InkWell] Widget from Flutter.
   factory Pressable.ripple({

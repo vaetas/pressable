@@ -5,12 +5,12 @@ import 'package:pressable/src/base.dart';
 /// Fills [child] with selected color when pressed.
 class PressableFill extends Pressable {
   const PressableFill({
-    Key? key,
+    super.key,
     required this.child,
     this.onPressed,
     this.onLongPressed,
     required this.theme,
-  }) : super(key: key);
+  });
 
   final Widget child;
   final VoidCallback? onPressed;

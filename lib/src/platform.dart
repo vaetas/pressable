@@ -6,7 +6,7 @@ import 'package:pressable/pressable.dart';
 /// Define default [Pressable] animation for each platform.
 class PressablePlatform extends Pressable {
   const PressablePlatform({
-    Key? key,
+    super.key,
     required this.child,
     this.onPressed,
     this.onLongPressed,
@@ -15,7 +15,7 @@ class PressablePlatform extends Pressable {
     this.macOS,
     this.windows,
     this.linux,
-  }) : super(key: key);
+  });
 
   final Widget child;
   final VoidCallback? onPressed;

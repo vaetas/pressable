@@ -5,12 +5,12 @@ import 'package:pressable/src/base.dart';
 /// Scales [child] down when pressed.
 class PressableScale extends Pressable {
   const PressableScale({
-    Key? key,
+    super.key,
     required this.child,
     this.onPressed,
     this.onLongPressed,
     this.theme = const PressableScaleTheme(),
-  }) : super(key: key);
+  });
 
   final Widget child;
   final VoidCallback? onPressed;

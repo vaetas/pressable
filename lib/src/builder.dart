@@ -12,11 +12,11 @@ typedef PressableBuilderCallback = Widget Function(
 /// working with [GestureDetector].
 class PressableBuilder extends Pressable {
   const PressableBuilder({
-    Key? key,
+    super.key,
     required this.builder,
     this.onPressed,
     this.onLongPressed,
-  }) : super(key: key);
+  });
 
   final PressableBuilderCallback builder;
   final VoidCallback? onPressed;

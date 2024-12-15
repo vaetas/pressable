@@ -4,12 +4,12 @@ import 'package:pressable/pressable.dart';
 /// Uses default [InkWell] animation.
 class PressableRipple extends Pressable {
   const PressableRipple({
-    Key? key,
+    super.key,
     required this.child,
     this.onPressed,
     this.onLongPressed,
     this.theme,
-  }) : super(key: key);
+  });
 
   final Widget child;
   final VoidCallback? onPressed;

@@ -78,8 +78,8 @@ class HomeScreen extends StatelessWidget {
             onPressed: () {
               print('[HomeScreen.build] Fill pressed');
             },
-            theme: PressableFillTheme(
-              fillColor: Colors.red.withOpacity(0.2),
+            theme: const PressableFillTheme(
+              fillColor: Colors.red,
             ),
             child: const ExampleButton(title: 'Fill'),
           ),
@@ -117,8 +117,8 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
           DefaultPressableTheme(
-            fillTheme: PressableFillTheme(
-              fillColor: Colors.green.withOpacity(0.2),
+            fillTheme: const PressableFillTheme(
+              fillColor: Colors.green,
             ),
             child: Pressable.fill(
               onPressed: () {

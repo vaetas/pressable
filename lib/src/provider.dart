@@ -4,13 +4,13 @@ import 'package:pressable/pressable.dart';
 /// Define default values for Pressable theme for Widget subtree.
 class DefaultPressableTheme extends InheritedWidget {
   const DefaultPressableTheme({
-    Key? key,
+    super.key,
     this.rippleTheme = const PressableRippleTheme(),
     this.scaleTheme = const PressableScaleTheme(),
     this.opacityTheme = const PressableOpacityTheme(),
     this.fillTheme = const PressableFillTheme(),
-    required Widget child,
-  }) : super(key: key, child: child);
+    required super.child,
+  });
 
   final PressableRippleTheme rippleTheme;
   final PressableScaleTheme scaleTheme;
