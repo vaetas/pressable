@@ -44,12 +44,18 @@ abstract class Pressable extends StatefulWidget {
     required Widget child,
     VoidCallback? onPressed,
     VoidCallback? onLongPressed,
+    VoidCallback? onPressStarted,
+    VoidCallback? onPressEnded,
+    VoidCallback? onPressCanceled,
     PressableScaleTheme? theme,
   }) {
     return PressableScale(
       key: key,
       onPressed: onPressed,
       onLongPressed: onLongPressed,
+      onPressStarted: onPressStarted,
+      onPressEnded: onPressEnded,
+      onPressCanceled: onPressCanceled,
       theme: theme,
       child: child,
     );
@@ -62,12 +68,18 @@ abstract class Pressable extends StatefulWidget {
     required Widget child,
     VoidCallback? onPressed,
     VoidCallback? onLongPressed,
+    VoidCallback? onPressStarted,
+    VoidCallback? onPressEnded,
+    VoidCallback? onPressCanceled,
     PressableOpacityTheme? theme,
   }) {
     return PressableOpacity(
       key: key,
       onPressed: onPressed,
       onLongPressed: onLongPressed,
+      onPressStarted: onPressStarted,
+      onPressEnded: onPressEnded,
+      onPressCanceled: onPressCanceled,
       theme: theme,
       child: child,
     );

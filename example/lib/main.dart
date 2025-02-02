@@ -56,17 +56,26 @@ class HomeScreen extends StatelessWidget {
             onPressed: () {
               print('[HomeScreen.build] Scale pressed');
             },
+            onPressStarted: () {
+              print('[HomeScreen.build] Scale started');
+            },
+            onPressEnded: () {
+              print('[HomeScreen.build] Scale ended');
+            },
+            onPressCanceled: () {
+              print('[HomeScreen.build] Scale canceled');
+            },
             theme: const PressableScaleTheme(
               scaleFactor: 0.8,
             ),
-            // onLongPressed: () {
-            //   print('[HomeScreen.build] Scale long-pressed');
-            // },
             child: const ExampleButton(title: 'Scale'),
           ),
           Pressable.opacity(
             onPressed: () {
               print('[HomeScreen.build] Opacity pressed');
+            },
+            onPressStarted: () {
+              print('[HomeScreen.build] Opacity started');
             },
             theme: const PressableOpacityTheme(
               curve: Curves.easeOut,

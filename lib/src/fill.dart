@@ -9,12 +9,18 @@ class PressableFill extends Pressable {
     required this.child,
     this.onPressed,
     this.onLongPressed,
+    this.onPressStarted,
+    this.onPressEnded,
+    this.onPressCanceled,
     required this.theme,
   });
 
   final Widget child;
   final VoidCallback? onPressed;
   final VoidCallback? onLongPressed;
+  final VoidCallback? onPressStarted;
+  final VoidCallback? onPressEnded;
+  final VoidCallback? onPressCanceled;
   final PressableFillTheme? theme;
 
   @override
@@ -33,6 +39,11 @@ class _PressableFillState extends PressableBaseState<PressableFill> {
     return InkWell(
       onTap: widget.onPressed,
       onLongPress: widget.onLongPressed,
+      onTapDown:
+          widget.onPressed != null ? (details) => widget.onPressStarted : null,
+      onTapUp:
+          widget.onPressed != null ? (details) => widget.onPressEnded : null,
+      onTapCancel: widget.onPressed != null ? widget.onPressCanceled : null,
       splashFactory: InkRipple.splashFactory,
       highlightColor: theme.fillColor,
       splashColor: Colors.transparent,

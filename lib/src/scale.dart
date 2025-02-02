@@ -9,12 +9,18 @@ class PressableScale extends Pressable {
     required this.child,
     this.onPressed,
     this.onLongPressed,
+    this.onPressStarted,
+    this.onPressEnded,
+    this.onPressCanceled,
     this.theme = const PressableScaleTheme(),
   });
 
   final Widget child;
   final VoidCallback? onPressed;
   final VoidCallback? onLongPressed;
+  final VoidCallback? onPressStarted;
+  final VoidCallback? onPressEnded;
+  final VoidCallback? onPressCanceled;
   final PressableScaleTheme? theme;
 
   @override
@@ -63,6 +69,7 @@ class _PressableScaleState extends PressableBaseState<PressableScale>
   @override
   void onPressStarted(TapDownDetails details) {
     super.onPressStarted(details);
+    widget.onPressStarted?.call();
     _controller.animateTo(theme.scaleFactor);
   }
 
@@ -83,6 +90,7 @@ class _PressableScaleState extends PressableBaseState<PressableScale>
   @override
   void onPressEnded(TapUpDetails details) {
     super.onPressEnded(details);
+    widget.onPressEnded?.call();
     if (_controller.isAnimating) {
       _controller.addListener(_animationFinishedListener);
     } else {
@@ -93,6 +101,7 @@ class _PressableScaleState extends PressableBaseState<PressableScale>
   @override
   void onPressCanceled() {
     super.onPressCanceled();
+    widget.onPressCanceled?.call();
     _revertAnimation();
   }
 

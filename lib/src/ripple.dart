@@ -8,12 +8,18 @@ class PressableRipple extends Pressable {
     required this.child,
     this.onPressed,
     this.onLongPressed,
+    this.onPressStarted,
+    this.onPressEnded,
+    this.onPressCanceled,
     this.theme,
   });
 
   final Widget child;
   final VoidCallback? onPressed;
   final VoidCallback? onLongPressed;
+  final VoidCallback? onPressStarted;
+  final VoidCallback? onPressEnded;
+  final VoidCallback? onPressCanceled;
   final PressableRippleTheme? theme;
 
   @override
@@ -30,6 +36,11 @@ class _PressableRippleState extends State<PressableRipple> {
     return InkWell(
       onTap: widget.onPressed,
       onLongPress: widget.onLongPressed,
+      onTapDown:
+          widget.onPressed != null ? (details) => widget.onPressStarted : null,
+      onTapUp:
+          widget.onPressed != null ? (details) => widget.onPressEnded : null,
+      onTapCancel: widget.onPressed != null ? widget.onPressCanceled : null,
       splashFactory: InkRipple.splashFactory,
       highlightColor: theme?.highlightColor,
       splashColor: theme?.splashColor,

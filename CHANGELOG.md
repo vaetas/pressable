@@ -1,3 +1,9 @@
+## 0.7.0
+
+* feat: add `onPressStarted`, `onPressEnded`, and `onPressCanceled` callbacks for
+  `Pressable.scale()` and `Pressable.opacity()` constructor.
+* chore: update dependencies
+
 ## 0.6.0
 
 * fix: update dependencies

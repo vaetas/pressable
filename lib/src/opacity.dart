@@ -9,6 +9,9 @@ class PressableOpacity extends Pressable {
     required this.child,
     this.onPressed,
     this.onLongPressed,
+    this.onPressStarted,
+    this.onPressEnded,
+    this.onPressCanceled,
     this.theme = const PressableOpacityTheme(),
   });
 
@@ -16,6 +19,9 @@ class PressableOpacity extends Pressable {
   final VoidCallback? onPressed;
   final VoidCallback? onLongPressed;
   final PressableOpacityTheme? theme;
+  final VoidCallback? onPressStarted;
+  final VoidCallback? onPressEnded;
+  final VoidCallback? onPressCanceled;
 
   @override
   PressableBaseState<PressableOpacity> createState() =>
@@ -60,6 +66,7 @@ class _PressableOpacityState extends PressableBaseState<PressableOpacity>
   @override
   void onPressStarted(TapDownDetails details) {
     super.onPressStarted(details);
+    widget.onPressStarted?.call();
     _controller.animateTo(0.0);
   }
 
@@ -80,6 +87,7 @@ class _PressableOpacityState extends PressableBaseState<PressableOpacity>
   @override
   void onPressEnded(TapUpDetails details) {
     super.onPressEnded(details);
+    widget.onPressEnded?.call();
     if (_controller.isAnimating) {
       _controller.addListener(_animationFinishedListener);
     } else {
@@ -90,6 +98,7 @@ class _PressableOpacityState extends PressableBaseState<PressableOpacity>
   @override
   void onPressCanceled() {
     super.onPressCanceled();
+    widget.onPressCanceled?.call();
     _revertAnimation();
   }
 
