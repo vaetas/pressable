@@ -90,9 +90,10 @@ class HomeScreen extends StatelessWidget {
             },
             ios: const PressableTheme.opacity(),
             android: const PressableTheme.ripple(),
-            macOS: const PressableTheme.opacity(),
+            macos: const PressableTheme.opacity(),
             linux: const PressableTheme.opacity(),
             windows: const PressableTheme.opacity(),
+            web: const PressableTheme.opacity(),
             child: const ExampleButton(title: 'Platform'),
           ),
           SizedBox(
