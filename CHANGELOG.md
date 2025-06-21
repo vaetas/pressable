@@ -1,3 +1,10 @@
+## 0.8.0
+
+* feat: support web platform
+* feat: rename `PressablePlatform` param `macOS` to `macos` to align it with other platform
+* fix: show different mouse cursor on hover
+* chore: update example project to support all platforms
+
 ## 0.7.0
 
 * feat: add `onPressStarted`, `onPressEnded`, and `onPressCanceled` callbacks for
