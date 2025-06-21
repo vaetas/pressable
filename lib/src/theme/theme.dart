@@ -6,7 +6,7 @@ part 'theme.freezed.dart';
 
 /// Customize pressable animations.
 @freezed
-class PressableTheme with _$PressableTheme {
+sealed class PressableTheme with _$PressableTheme {
   /// Customize [PressableRipple] animations.
   const factory PressableTheme.ripple({
     Color? splashColor,
