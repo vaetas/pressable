@@ -43,25 +43,30 @@ class _PressableScaleState extends PressableBaseState<PressableScale>
   Widget build(BuildContext context) {
     assert(theme.scaleFactor < 1.0, 'Scale factor must be less than 1.0');
 
-    return GestureDetector(
-      onTap: widget.onPressed,
-      onTapDown: widget.onPressed != null ? onPressStarted : null,
-      onTapUp: widget.onPressed != null ? onPressEnded : null,
-      onTapCancel: widget.onPressed != null ? onPressCanceled : null,
-      onLongPress: widget.onLongPressed,
-      onLongPressStart:
-          widget.onLongPressed != null ? super.onLongPressStarted : null,
-      onLongPressEnd:
-          widget.onLongPressed != null ? super.onLongPressEnded : null,
-      behavior: HitTestBehavior.opaque,
-      excludeFromSemantics: true,
-      child: Builder(
-        builder: (context) {
-          return ScaleTransition(
-            scale: _animation,
-            child: widget.child,
-          );
-        },
+    return MouseRegion(
+      cursor: (widget.onPressed != null || widget.onLongPressed != null)
+          ? SystemMouseCursors.click
+          : MouseCursor.defer,
+      child: GestureDetector(
+        onTap: widget.onPressed,
+        onTapDown: widget.onPressed != null ? onPressStarted : null,
+        onTapUp: widget.onPressed != null ? onPressEnded : null,
+        onTapCancel: widget.onPressed != null ? onPressCanceled : null,
+        onLongPress: widget.onLongPressed,
+        onLongPressStart:
+            widget.onLongPressed != null ? super.onLongPressStarted : null,
+        onLongPressEnd:
+            widget.onLongPressed != null ? super.onLongPressEnded : null,
+        behavior: HitTestBehavior.opaque,
+        excludeFromSemantics: true,
+        child: Builder(
+          builder: (context) {
+            return ScaleTransition(
+              scale: _animation,
+              child: widget.child,
+            );
+          },
+        ),
       ),
     );
   }

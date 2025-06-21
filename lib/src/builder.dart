@@ -30,13 +30,18 @@ class PressableBuilder extends Pressable {
 class _PressableBuilderState extends PressableBaseState<PressableBuilder> {
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: widget.onPressed,
-      onTapDown: widget.onPressed != null ? onPressStarted : null,
-      onTapUp: widget.onPressed != null ? onPressEnded : null,
-      onTapCancel: widget.onPressed != null ? onPressCanceled : null,
-      onLongPress: widget.onLongPressed,
-      child: widget.builder(context, isPressed),
+    return MouseRegion(
+      cursor: (widget.onPressed != null || widget.onLongPressed != null)
+          ? SystemMouseCursors.click
+          : SystemMouseCursors.basic,
+      child: GestureDetector(
+        onTap: widget.onPressed,
+        onTapDown: widget.onPressed != null ? onPressStarted : null,
+        onTapUp: widget.onPressed != null ? onPressEnded : null,
+        onTapCancel: widget.onPressed != null ? onPressCanceled : null,
+        onLongPress: widget.onLongPressed,
+        child: widget.builder(context, isPressed),
+      ),
     );
   }
 }
