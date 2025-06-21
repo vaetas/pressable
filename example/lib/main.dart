@@ -7,22 +7,20 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      theme: ThemeData(primarySwatch: Colors.blue),
       home: const HomeScreen(),
     );
   }
 }
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -40,9 +38,7 @@ class HomeScreen extends StatelessWidget {
                 height: 50,
                 color: isPressed ? Colors.blue : const Color(0xFFd6d6d6),
                 duration: const Duration(milliseconds: 100),
-                child: const Center(
-                  child: Text('Custom Builder'),
-                ),
+                child: const Center(child: Text('Custom Builder')),
               );
             },
           ),
@@ -65,9 +61,7 @@ class HomeScreen extends StatelessWidget {
             onPressCanceled: () {
               print('[HomeScreen.build] Scale canceled');
             },
-            theme: const PressableScaleTheme(
-              scaleFactor: 0.8,
-            ),
+            theme: const PressableScaleTheme(scaleFactor: 0.8),
             child: const ExampleButton(title: 'Scale'),
           ),
           Pressable.opacity(
@@ -87,9 +81,7 @@ class HomeScreen extends StatelessWidget {
             onPressed: () {
               print('[HomeScreen.build] Fill pressed');
             },
-            theme: const PressableFillTheme(
-              fillColor: Colors.red,
-            ),
+            theme: const PressableFillTheme(fillColor: Colors.red),
             child: const ExampleButton(title: 'Fill'),
           ),
           Pressable.platform(
@@ -98,6 +90,9 @@ class HomeScreen extends StatelessWidget {
             },
             ios: const PressableTheme.opacity(),
             android: const PressableTheme.ripple(),
+            macOS: const PressableTheme.opacity(),
+            linux: const PressableTheme.opacity(),
+            windows: const PressableTheme.opacity(),
             child: const ExampleButton(title: 'Platform'),
           ),
           SizedBox(
@@ -126,9 +121,7 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
           DefaultPressableTheme(
-            fillTheme: const PressableFillTheme(
-              fillColor: Colors.green,
-            ),
+            fillTheme: const PressableFillTheme(fillColor: Colors.green),
             child: Pressable.fill(
               onPressed: () {
                 print('[HomeScreen.build] Default theme pressed');
@@ -143,10 +136,7 @@ class HomeScreen extends StatelessWidget {
 }
 
 class ExampleButton extends StatelessWidget {
-  const ExampleButton({
-    Key? key,
-    required this.title,
-  }) : super(key: key);
+  const ExampleButton({super.key, required this.title});
 
   final String title;
 
@@ -161,10 +151,7 @@ class ExampleButton extends StatelessWidget {
         children: [
           Text(title),
           const Spacer(),
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.bookmark),
-          ),
+          IconButton(onPressed: () {}, icon: const Icon(Icons.bookmark)),
         ],
       ),
     );
