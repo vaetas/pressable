@@ -5,7 +5,7 @@ homepage: https://github.com/vaetas/pressable
 repository: https://github.com/vaetas/pressable
 
 environment:
-  sdk: ^3.6.0
+  sdk: ^3.7.2
   flutter: ">=1.17.0"
 
 dependencies:
