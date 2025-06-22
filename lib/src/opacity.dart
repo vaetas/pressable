@@ -3,7 +3,7 @@ import 'package:pressable/pressable.dart';
 import 'package:pressable/src/base.dart';
 
 /// Makes [child] semi-transparent when pressed.
-class PressableOpacity extends Pressable {
+class PressableOpacity extends StatefulWidget {
   const PressableOpacity({
     super.key,
     required this.child,
@@ -12,13 +12,13 @@ class PressableOpacity extends Pressable {
     this.onPressStarted,
     this.onPressEnded,
     this.onPressCanceled,
-    this.theme = const PressableOpacityTheme(),
+    this.theme = const PressableThemeOpacity(),
   });
 
   final Widget child;
   final VoidCallback? onPressed;
   final VoidCallback? onLongPressed;
-  final PressableOpacityTheme? theme;
+  final PressableThemeOpacity? theme;
   final VoidCallback? onPressStarted;
   final VoidCallback? onPressEnded;
   final VoidCallback? onPressCanceled;
@@ -34,10 +34,10 @@ class _PressableOpacityState extends PressableBaseState<PressableOpacity>
 
   late Animation<double> _animation = _createAnimation();
 
-  PressableOpacityTheme get theme {
+  PressableThemeOpacity get theme {
     return widget.theme ??
         DefaultPressableTheme.of(context)?.opacityTheme ??
-        const PressableOpacityTheme();
+        const PressableThemeOpacity();
   }
 
   @override
@@ -45,9 +45,10 @@ class _PressableOpacityState extends PressableBaseState<PressableOpacity>
     assert(theme.opacityFactor < 1.0, 'Opacity factor must be less than 1.0');
 
     return MouseRegion(
-      cursor: (widget.onPressed != null || widget.onLongPressed != null)
-          ? SystemMouseCursors.click
-          : SystemMouseCursors.basic,
+      cursor:
+          (widget.onPressed != null || widget.onLongPressed != null)
+              ? SystemMouseCursors.click
+              : SystemMouseCursors.basic,
       child: GestureDetector(
         onTap: widget.onPressed,
         onTapDown: widget.onPressed != null ? onPressStarted : null,
@@ -60,10 +61,7 @@ class _PressableOpacityState extends PressableBaseState<PressableOpacity>
             widget.onLongPressed != null ? super.onLongPressEnded : null,
         behavior: HitTestBehavior.opaque,
         excludeFromSemantics: true,
-        child: FadeTransition(
-          opacity: _animation,
-          child: widget.child,
-        ),
+        child: FadeTransition(opacity: _animation, child: widget.child),
       ),
     );
   }

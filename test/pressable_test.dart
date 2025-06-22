@@ -10,7 +10,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: Pressable.ripple(
+            body: PressableRipple(
               onPressed: () => pressed = true,
               child: const Text('Test'),
             ),
@@ -35,7 +35,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: Pressable.scale(
+            body: PressableScale(
               onPressed: () => pressed = true,
               onPressStarted: () => pressStarted = true,
               onPressEnded: () => pressEnded = true,
@@ -70,7 +70,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: Pressable.opacity(
+            body: PressableOpacity(
               onPressed: () => pressed = true,
               child: const Text('Opacity Test'),
             ),
@@ -92,7 +92,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: Pressable.fill(
+            body: PressableFill(
               onPressed: () => pressed = true,
               child: const Text('Fill Test'),
             ),
@@ -116,7 +116,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: Pressable.builder(
+            body: PressableBuilder(
               onPressed: () => pressed = true,
               builder: (context, isPressed) {
                 builderPressed = isPressed;
@@ -153,7 +153,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: Pressable.scale(
+            body: PressableScale(
               onLongPressed: () => longPressed = true,
               child: const Text('Long Press Test'),
             ),
@@ -167,7 +167,7 @@ void main() {
     });
 
     testWidgets('Scale theme customization works', (tester) async {
-      const customTheme = PressableScaleTheme(
+      const customTheme = PressableThemeScale(
         scaleFactor: 0.5,
         duration: Duration(milliseconds: 200),
       );
@@ -175,7 +175,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: Pressable.scale(
+            body: PressableScale(
               theme: customTheme,
               onPressed: () {},
               child: const Text('Custom Theme'),
@@ -191,7 +191,7 @@ void main() {
     });
 
     testWidgets('Opacity theme customization works', (tester) async {
-      const customTheme = PressableOpacityTheme(
+      const customTheme = PressableThemeOpacity(
         opacityFactor: 0.3,
         duration: Duration(milliseconds: 150),
       );
@@ -199,7 +199,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: Pressable.opacity(
+            body: PressableOpacity(
               theme: customTheme,
               onPressed: () {},
               child: const Text('Custom Opacity'),
@@ -215,7 +215,7 @@ void main() {
     });
 
     testWidgets('Ripple theme customization works', (tester) async {
-      const customTheme = PressableRippleTheme(
+      const customTheme = PressableThemeRipple(
         splashColor: Colors.red,
         highlightColor: Colors.blue,
         borderRadius: BorderRadius.all(Radius.circular(10)),
@@ -224,7 +224,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: Pressable.ripple(
+            body: PressableRipple(
               theme: customTheme,
               onPressed: () {},
               child: const Text('Custom Ripple'),
@@ -240,7 +240,7 @@ void main() {
     });
 
     testWidgets('Fill theme customization works', (tester) async {
-      const customTheme = PressableFillTheme(
+      const customTheme = PressableThemeFill(
         fillColor: Colors.green,
         borderRadius: BorderRadius.all(Radius.circular(15)),
       );
@@ -248,7 +248,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: Pressable.fill(
+            body: PressableFill(
               theme: customTheme,
               onPressed: () {},
               child: const Text('Custom Fill'),
@@ -264,14 +264,14 @@ void main() {
     });
 
     testWidgets('Disabled pressable does not respond to taps', (tester) async {
-      var pressed = false;
+      const pressed = false;
 
       await tester.pumpWidget(
-        MaterialApp(
+        const MaterialApp(
           home: Scaffold(
-            body: Pressable.scale(
+            body: PressableScale(
               onPressed: null, // Disabled
-              child: const Text('Disabled'),
+              child: Text('Disabled'),
             ),
           ),
         ),
@@ -287,7 +287,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: Pressable.scale(
+            body: PressableScale(
               onPressed: () {},
               onPressCanceled: () => pressCanceled = true,
               child: const Text('Cancel Test'),

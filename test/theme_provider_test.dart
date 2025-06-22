@@ -7,19 +7,19 @@ void main() {
     testWidgets('DefaultPressableTheme provides themes to child widgets', (
       tester,
     ) async {
-      const customScaleTheme = PressableScaleTheme(
+      const customScaleTheme = PressableThemeScale(
         scaleFactor: 0.7,
         duration: Duration(milliseconds: 250),
       );
-      const customOpacityTheme = PressableOpacityTheme(
+      const customOpacityTheme = PressableThemeOpacity(
         opacityFactor: 0.4,
         duration: Duration(milliseconds: 200),
       );
-      const customRippleTheme = PressableRippleTheme(
+      const customRippleTheme = PressableThemeRipple(
         splashColor: Colors.red,
         highlightColor: Colors.blue,
       );
-      const customFillTheme = PressableFillTheme(fillColor: Colors.green);
+      const customFillTheme = PressableThemeFill(fillColor: Colors.green);
 
       await tester.pumpWidget(
         MaterialApp(
@@ -31,16 +31,16 @@ void main() {
             child: Scaffold(
               body: Column(
                 children: [
-                  Pressable.scale(onPressed: () {}, child: const Text('Scale')),
-                  Pressable.opacity(
+                  PressableScale(onPressed: () {}, child: const Text('Scale')),
+                  PressableOpacity(
                     onPressed: () {},
                     child: const Text('Opacity'),
                   ),
-                  Pressable.ripple(
+                  PressableRipple(
                     onPressed: () {},
                     child: const Text('Ripple'),
                   ),
-                  Pressable.fill(onPressed: () {}, child: const Text('Fill')),
+                  PressableFill(onPressed: () {}, child: const Text('Fill')),
                 ],
               ),
             ),
@@ -57,7 +57,7 @@ void main() {
     testWidgets('DefaultPressableTheme.of returns correct theme', (
       tester,
     ) async {
-      const customScaleTheme = PressableScaleTheme(scaleFactor: 0.6);
+      const customScaleTheme = PressableThemeScale(scaleFactor: 0.6);
       DefaultPressableTheme? capturedTheme;
 
       await tester.pumpWidget(
@@ -104,8 +104,8 @@ void main() {
     testWidgets('Nested DefaultPressableTheme providers work correctly', (
       tester,
     ) async {
-      const outerScaleTheme = PressableScaleTheme(scaleFactor: 0.5);
-      const innerScaleTheme = PressableScaleTheme(scaleFactor: 0.8);
+      const outerScaleTheme = PressableThemeScale(scaleFactor: 0.5);
+      const innerScaleTheme = PressableThemeScale(scaleFactor: 0.8);
 
       DefaultPressableTheme? outerCapturedTheme;
       DefaultPressableTheme? innerCapturedTheme;
@@ -146,7 +146,7 @@ void main() {
     testWidgets('Widgets use default themes when no specific theme provided', (
       tester,
     ) async {
-      const customScaleTheme = PressableScaleTheme(scaleFactor: 0.7);
+      const customScaleTheme = PressableThemeScale(scaleFactor: 0.7);
       var pressedScale = false;
 
       await tester.pumpWidget(
@@ -154,7 +154,7 @@ void main() {
           home: DefaultPressableTheme(
             scaleTheme: customScaleTheme,
             child: Scaffold(
-              body: Pressable.scale(
+              body: PressableScale(
                 onPressed: () => pressedScale = true,
                 child: const Text('Scale Test'),
               ),
@@ -179,8 +179,8 @@ void main() {
     testWidgets('Widget-specific themes override default themes', (
       tester,
     ) async {
-      const defaultScaleTheme = PressableScaleTheme(scaleFactor: 0.5);
-      const overrideScaleTheme = PressableScaleTheme(scaleFactor: 0.9);
+      const defaultScaleTheme = PressableThemeScale(scaleFactor: 0.5);
+      const overrideScaleTheme = PressableThemeScale(scaleFactor: 0.9);
 
       await tester.pumpWidget(
         MaterialApp(
@@ -189,11 +189,11 @@ void main() {
             child: Scaffold(
               body: Column(
                 children: [
-                  Pressable.scale(
+                  PressableScale(
                     onPressed: () {},
                     child: const Text('Default Scale'),
                   ),
-                  Pressable.scale(
+                  PressableScale(
                     theme: overrideScaleTheme,
                     onPressed: () {},
                     child: const Text('Override Scale'),

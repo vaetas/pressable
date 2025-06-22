@@ -5,17 +5,17 @@ import 'package:pressable/pressable.dart';
 class DefaultPressableTheme extends InheritedWidget {
   const DefaultPressableTheme({
     super.key,
-    this.rippleTheme = const PressableRippleTheme(),
-    this.scaleTheme = const PressableScaleTheme(),
-    this.opacityTheme = const PressableOpacityTheme(),
-    this.fillTheme = const PressableFillTheme(),
+    this.rippleTheme = const PressableThemeRipple(),
+    this.scaleTheme = const PressableThemeScale(),
+    this.opacityTheme = const PressableThemeOpacity(),
+    this.fillTheme = const PressableThemeFill(),
     required super.child,
   });
 
-  final PressableRippleTheme rippleTheme;
-  final PressableScaleTheme scaleTheme;
-  final PressableOpacityTheme opacityTheme;
-  final PressableFillTheme fillTheme;
+  final PressableThemeRipple rippleTheme;
+  final PressableThemeScale scaleTheme;
+  final PressableThemeOpacity opacityTheme;
+  final PressableThemeFill fillTheme;
 
   /// Get closest [DefaultPressableTheme] above in the Widget tree.
   static DefaultPressableTheme? of(BuildContext context) {

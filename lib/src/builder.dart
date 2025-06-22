@@ -1,16 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:pressable/pressable.dart';
 import 'package:pressable/src/base.dart';
 
 /// Builds [Widget] inside [PressableBuilder].
-typedef PressableBuilderCallback = Widget Function(
-  BuildContext context,
-  bool isPressed,
-);
+typedef PressableBuilderCallback =
+    Widget Function(BuildContext context, bool isPressed);
 
 /// Use [PressableBuilder] to define your own pressable animation. Simplifies
 /// working with [GestureDetector].
-class PressableBuilder extends Pressable {
+class PressableBuilder extends StatefulWidget {
   const PressableBuilder({
     super.key,
     required this.builder,
@@ -31,9 +28,10 @@ class _PressableBuilderState extends PressableBaseState<PressableBuilder> {
   @override
   Widget build(BuildContext context) {
     return MouseRegion(
-      cursor: (widget.onPressed != null || widget.onLongPressed != null)
-          ? SystemMouseCursors.click
-          : SystemMouseCursors.basic,
+      cursor:
+          (widget.onPressed != null || widget.onLongPressed != null)
+              ? SystemMouseCursors.click
+              : SystemMouseCursors.basic,
       child: GestureDetector(
         onTap: widget.onPressed,
         onTapDown: widget.onPressed != null ? onPressStarted : null,

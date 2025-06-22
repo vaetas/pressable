@@ -3,7 +3,7 @@ import 'package:pressable/pressable.dart';
 import 'package:pressable/src/base.dart';
 
 /// Scales [child] down when pressed.
-class PressableScale extends Pressable {
+class PressableScale extends StatefulWidget {
   const PressableScale({
     super.key,
     required this.child,
@@ -12,7 +12,7 @@ class PressableScale extends Pressable {
     this.onPressStarted,
     this.onPressEnded,
     this.onPressCanceled,
-    this.theme = const PressableScaleTheme(),
+    this.theme = const PressableThemeScale(),
   });
 
   final Widget child;
@@ -21,7 +21,7 @@ class PressableScale extends Pressable {
   final VoidCallback? onPressStarted;
   final VoidCallback? onPressEnded;
   final VoidCallback? onPressCanceled;
-  final PressableScaleTheme? theme;
+  final PressableThemeScale? theme;
 
   @override
   PressableBaseState<PressableScale> createState() => _PressableScaleState();
@@ -33,10 +33,10 @@ class _PressableScaleState extends PressableBaseState<PressableScale>
 
   late Animation<double> _animation = _createAnimation();
 
-  PressableScaleTheme get theme {
+  PressableThemeScale get theme {
     return widget.theme ??
         DefaultPressableTheme.of(context)?.scaleTheme ??
-        const PressableScaleTheme();
+        const PressableThemeScale();
   }
 
   @override
@@ -44,9 +44,10 @@ class _PressableScaleState extends PressableBaseState<PressableScale>
     assert(theme.scaleFactor < 1.0, 'Scale factor must be less than 1.0');
 
     return MouseRegion(
-      cursor: (widget.onPressed != null || widget.onLongPressed != null)
-          ? SystemMouseCursors.click
-          : MouseCursor.defer,
+      cursor:
+          (widget.onPressed != null || widget.onLongPressed != null)
+              ? SystemMouseCursors.click
+              : MouseCursor.defer,
       child: GestureDetector(
         onTap: widget.onPressed,
         onTapDown: widget.onPressed != null ? onPressStarted : null,
@@ -61,10 +62,7 @@ class _PressableScaleState extends PressableBaseState<PressableScale>
         excludeFromSemantics: true,
         child: Builder(
           builder: (context) {
-            return ScaleTransition(
-              scale: _animation,
-              child: widget.child,
-            );
+            return ScaleTransition(scale: _animation, child: widget.child);
           },
         ),
       ),

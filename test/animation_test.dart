@@ -5,7 +5,7 @@ import 'package:pressable/pressable.dart';
 void main() {
   group('Pressable Animation Tests', () {
     testWidgets('Scale animation completes correctly', (tester) async {
-      const theme = PressableScaleTheme(
+      const theme = PressableThemeScale(
         scaleFactor: 0.5,
         duration: Duration(milliseconds: 100),
       );
@@ -13,7 +13,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: Pressable.scale(
+            body: PressableScale(
               theme: theme,
               onPressed: () {},
               child: const Text('Scale Animation'),
@@ -68,7 +68,7 @@ void main() {
     });
 
     testWidgets('Opacity animation completes correctly', (tester) async {
-      const theme = PressableOpacityTheme(
+      const theme = PressableThemeOpacity(
         opacityFactor: 0.3,
         duration: Duration(milliseconds: 100),
       );
@@ -76,7 +76,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: Pressable.opacity(
+            body: PressableOpacity(
               theme: theme,
               onPressed: () {},
               child: const Text('Opacity Animation'),
@@ -131,7 +131,7 @@ void main() {
     });
 
     testWidgets('Scale animation with custom curve works', (tester) async {
-      const theme = PressableScaleTheme(
+      const theme = PressableThemeScale(
         scaleFactor: 0.8,
         duration: Duration(milliseconds: 200),
         curve: Curves.bounceIn,
@@ -141,7 +141,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: Pressable.scale(
+            body: PressableScale(
               theme: theme,
               onPressed: () {},
               child: const Text('Curve Test'),
@@ -164,7 +164,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: Pressable.scale(
+            body: PressableScale(
               onPressed: () {
                 pressed = true;
                 pressCount++;
@@ -188,8 +188,8 @@ void main() {
     });
 
     testWidgets('Animation continues when theme changes', (tester) async {
-      const initialTheme = PressableScaleTheme(scaleFactor: 0.5);
-      const newTheme = PressableScaleTheme(scaleFactor: 0.8);
+      const initialTheme = PressableThemeScale(scaleFactor: 0.5);
+      const newTheme = PressableThemeScale(scaleFactor: 0.8);
 
       await tester.pumpWidget(
         const MaterialApp(
@@ -218,7 +218,7 @@ void main() {
     });
 
     testWidgets('Long animation duration works correctly', (tester) async {
-      const theme = PressableScaleTheme(
+      const theme = PressableThemeScale(
         duration: Duration(seconds: 1), // Long duration
         scaleFactor: 0.7,
       );
@@ -226,7 +226,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: Pressable.scale(
+            body: PressableScale(
               theme: theme,
               onPressed: () {},
               child: const Text('Long Animation'),
@@ -268,7 +268,7 @@ void main() {
     });
 
     testWidgets('Very short press still shows animation', (tester) async {
-      const theme = PressableScaleTheme(
+      const theme = PressableThemeScale(
         duration: Duration(milliseconds: 300),
         scaleFactor: 0.5,
       );
@@ -276,7 +276,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: Pressable.scale(
+            body: PressableScale(
               theme: theme,
               onPressed: () {},
               child: const Text('Short Press'),
@@ -304,7 +304,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: Pressable.scale(
+            body: PressableScale(
               onPressed: () {},
               child: const Text('Dispose Test'),
             ),
@@ -333,8 +333,8 @@ class _AnimationThemeTestWidget extends StatefulWidget {
     required this.newTheme,
   });
 
-  final PressableScaleTheme initialTheme;
-  final PressableScaleTheme newTheme;
+  final PressableThemeScale initialTheme;
+  final PressableThemeScale newTheme;
 
   @override
   State<_AnimationThemeTestWidget> createState() =>
@@ -342,7 +342,7 @@ class _AnimationThemeTestWidget extends StatefulWidget {
 }
 
 class _AnimationThemeTestWidgetState extends State<_AnimationThemeTestWidget> {
-  late PressableScaleTheme currentTheme;
+  late PressableThemeScale currentTheme;
 
   @override
   void initState() {
@@ -355,7 +355,7 @@ class _AnimationThemeTestWidgetState extends State<_AnimationThemeTestWidget> {
     return Scaffold(
       body: Column(
         children: [
-          Pressable.scale(
+          PressableScale(
             theme: currentTheme,
             onPressed: () {},
             child: const Text('Theme Change Test'),

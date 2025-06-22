@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pressable/pressable.dart';
 
 /// Uses default [InkWell] animation.
-class PressableRipple extends Pressable {
+class PressableRipple extends StatefulWidget {
   const PressableRipple({
     super.key,
     required this.child,
@@ -20,14 +20,14 @@ class PressableRipple extends Pressable {
   final VoidCallback? onPressStarted;
   final VoidCallback? onPressEnded;
   final VoidCallback? onPressCanceled;
-  final PressableRippleTheme? theme;
+  final PressableThemeRipple? theme;
 
   @override
   State<PressableRipple> createState() => _PressableRippleState();
 }
 
 class _PressableRippleState extends State<PressableRipple> {
-  PressableRippleTheme? get theme {
+  PressableThemeRipple? get theme {
     return widget.theme ?? DefaultPressableTheme.of(context)?.rippleTheme;
   }
 

@@ -28,7 +28,7 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(title: const Text('Example')),
       body: Column(
         children: [
-          Pressable.builder(
+          PressableBuilder(
             onPressed: () {
               print('[HomeScreen.build] Builder pressed');
             },
@@ -42,13 +42,13 @@ class HomeScreen extends StatelessWidget {
               );
             },
           ),
-          Pressable.ripple(
+          PressableRipple(
             onPressed: () {
               print('[HomeScreen.build] Ripple pressed');
             },
             child: const ExampleButton(title: 'Ripple'),
           ),
-          Pressable.scale(
+          PressableScale(
             onPressed: () {
               print('[HomeScreen.build] Scale pressed');
             },
@@ -61,46 +61,46 @@ class HomeScreen extends StatelessWidget {
             onPressCanceled: () {
               print('[HomeScreen.build] Scale canceled');
             },
-            theme: const PressableScaleTheme(scaleFactor: 0.8),
+            theme: const PressableThemeScale(scaleFactor: 0.8),
             child: const ExampleButton(title: 'Scale'),
           ),
-          Pressable.opacity(
+          PressableOpacity(
             onPressed: () {
               print('[HomeScreen.build] Opacity pressed');
             },
             onPressStarted: () {
               print('[HomeScreen.build] Opacity started');
             },
-            theme: const PressableOpacityTheme(
+            theme: const PressableThemeOpacity(
               curve: Curves.easeOut,
               opacityFactor: 0.4,
             ),
             child: const ExampleButton(title: 'Opacity'),
           ),
-          Pressable.fill(
+          PressableFill(
             onPressed: () {
               print('[HomeScreen.build] Fill pressed');
             },
-            theme: const PressableFillTheme(fillColor: Colors.red),
+            theme: const PressableThemeFill(fillColor: Colors.red),
             child: const ExampleButton(title: 'Fill'),
           ),
-          Pressable.platform(
+          PressablePlatform(
             onPressed: () {
               print('[HomeScreen.build] Platform pressed');
             },
-            ios: const PressableTheme.opacity(),
-            android: const PressableTheme.ripple(),
-            macos: const PressableTheme.opacity(),
-            linux: const PressableTheme.opacity(),
-            windows: const PressableTheme.opacity(),
-            web: const PressableTheme.opacity(),
+            ios: const PressableThemeRipple(),
+            android: const PressableThemeRipple(),
+            macos: const PressableThemeRipple(),
+            linux: const PressableThemeRipple(),
+            windows: const PressableThemeRipple(),
+            web: const PressableThemeRipple(),
             child: const ExampleButton(title: 'Platform'),
           ),
           SizedBox(
             width: 150,
             child: Stack(
               children: [
-                Pressable.scale(
+                PressableScale(
                   onPressed: () {
                     print('[HomeScreen.build] Scale pressed');
                   },
@@ -122,8 +122,8 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
           DefaultPressableTheme(
-            fillTheme: const PressableFillTheme(fillColor: Colors.green),
-            child: Pressable.fill(
+            fillTheme: const PressableThemeFill(fillColor: Colors.green),
+            child: PressableFill(
               onPressed: () {
                 print('[HomeScreen.build] Default theme pressed');
               },

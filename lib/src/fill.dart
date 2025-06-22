@@ -3,7 +3,7 @@ import 'package:pressable/pressable.dart';
 import 'package:pressable/src/base.dart';
 
 /// Fills [child] with selected color when pressed.
-class PressableFill extends Pressable {
+class PressableFill extends StatefulWidget {
   const PressableFill({
     super.key,
     required this.child,
@@ -12,7 +12,7 @@ class PressableFill extends Pressable {
     this.onPressStarted,
     this.onPressEnded,
     this.onPressCanceled,
-    required this.theme,
+    this.theme,
   });
 
   final Widget child;
@@ -21,17 +21,17 @@ class PressableFill extends Pressable {
   final VoidCallback? onPressStarted;
   final VoidCallback? onPressEnded;
   final VoidCallback? onPressCanceled;
-  final PressableFillTheme? theme;
+  final PressableThemeFill? theme;
 
   @override
   PressableBaseState<PressableFill> createState() => _PressableFillState();
 }
 
 class _PressableFillState extends PressableBaseState<PressableFill> {
-  PressableFillTheme get theme {
+  PressableThemeFill get theme {
     return widget.theme ??
         DefaultPressableTheme.of(context)?.fillTheme ??
-        const PressableFillTheme();
+        const PressableThemeFill();
   }
 
   @override

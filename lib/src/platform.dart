@@ -4,8 +4,10 @@ import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:pressable/pressable.dart';
 
-/// Define default [Pressable] animation for each platform.
-class PressablePlatform extends Pressable {
+/// Define default Widget animation for each platform.
+///
+/// Specific platform theme needs to be provided when running on the platform.
+class PressablePlatform extends StatefulWidget {
   const PressablePlatform({
     super.key,
     required this.child,
@@ -38,17 +40,11 @@ class _PressablePlatformState extends State<PressablePlatform> {
   Widget build(BuildContext context) {
     PressableTheme? pressable;
     if (kIsWeb) {
-      assert(
-        widget.web != null,
-        'PressableTheme for web is not provided.',
-      );
+      assert(widget.web != null, 'PressableTheme for web is not provided.');
       pressable = widget.web;
     } else {
       if (io.Platform.isIOS) {
-        assert(
-          widget.ios != null,
-          'PressableTheme for iOS is not provided.',
-        );
+        assert(widget.ios != null, 'PressableTheme for iOS is not provided.');
         pressable = widget.ios;
       }
       if (io.Platform.isAndroid) {
@@ -87,39 +83,39 @@ class _PressablePlatformState extends State<PressablePlatform> {
       );
     }
 
-    return pressable.map(
-      ripple: (theme) {
-        return Pressable.ripple(
-          onPressed: widget.onPressed,
-          onLongPressed: widget.onLongPressed,
-          theme: theme,
-          child: widget.child,
-        );
-      },
-      scale: (theme) {
-        return Pressable.scale(
-          onPressed: widget.onPressed,
-          onLongPressed: widget.onLongPressed,
-          theme: theme,
-          child: widget.child,
-        );
-      },
-      opacity: (theme) {
-        return Pressable.opacity(
-          onPressed: widget.onPressed,
-          onLongPressed: widget.onLongPressed,
-          theme: theme,
-          child: widget.child,
-        );
-      },
-      fill: (theme) {
-        return Pressable.fill(
-          onPressed: widget.onPressed,
-          onLongPressed: widget.onLongPressed,
-          theme: theme,
-          child: widget.child,
-        );
-      },
-    );
+    if (pressable is PressableThemeRipple) {
+      return PressableRipple(
+        onPressed: widget.onPressed,
+        onLongPressed: widget.onLongPressed,
+        theme: pressable,
+        child: widget.child,
+      );
+    }
+    if (pressable is PressableThemeScale) {
+      return PressableScale(
+        onPressed: widget.onPressed,
+        onLongPressed: widget.onLongPressed,
+        theme: pressable,
+        child: widget.child,
+      );
+    }
+    if (pressable is PressableThemeOpacity) {
+      return PressableOpacity(
+        onPressed: widget.onPressed,
+        onLongPressed: widget.onLongPressed,
+        theme: pressable,
+        child: widget.child,
+      );
+    }
+    if (pressable is PressableThemeFill) {
+      return PressableFill(
+        onPressed: widget.onPressed,
+        onLongPressed: widget.onLongPressed,
+        theme: pressable,
+        child: widget.child,
+      );
+    }
+
+    throw ArgumentError('PressableTheme for current platform is not provided.');
   }
 }

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pressable/pressable.dart';
 
-/// Default [State] for more complex [Pressable] Widgets.
+/// Default [State] for more complex pressable Widgets.
 abstract class PressableBaseState<T extends StatefulWidget> extends State<T> {
   bool isPressed = false;
 
