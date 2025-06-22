@@ -1,0 +1,9 @@
+---
+description: *
+globs: 
+alwaysApply: false
+---
+- Always use `final` or `const` where possible. Do not manually write types.
+- Always prefer `final`. Always use `final` instead of `var`.
+- Prefer using anonymous method for lists.
+- Always use absolute package imports. Never use relative imports for other packages.
