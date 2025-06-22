@@ -12,7 +12,7 @@ class PressableOpacity extends StatefulWidget {
     this.onPressStarted,
     this.onPressEnded,
     this.onPressCanceled,
-    this.theme = const PressableThemeOpacity(),
+    this.theme,
   });
 
   final Widget child;

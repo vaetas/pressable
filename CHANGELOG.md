@@ -1,3 +1,9 @@
+## 0.9.0
+
+* feat: rename all theme classes (use `PressableThemeScale` etc)
+* feat: remove named constructor for pressables (use `PressableScale` etc)
+* fix: remove freezed from internal implementation
+
 ## 0.8.0
 
 * feat: support web platform

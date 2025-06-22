@@ -12,7 +12,7 @@ class PressableScale extends StatefulWidget {
     this.onPressStarted,
     this.onPressEnded,
     this.onPressCanceled,
-    this.theme = const PressableThemeScale(),
+    this.theme,
   });
 
   final Widget child;
