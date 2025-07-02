@@ -1,3 +1,7 @@
+## 0.10.0
+
+* fix: set lower sdk version
+
 ## 0.9.0
 
 * feat: rename all theme classes (use `PressableThemeScale` etc)

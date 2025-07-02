@@ -1,11 +1,11 @@
 name: pressable
 description: Touch effects to your widgets for ripple, scale, opacity, fill, and custom effects.
-version: 0.9.0
+version: 0.10.0
 homepage: https://github.com/vaetas/pressable
 repository: https://github.com/vaetas/pressable
 
 environment:
-  sdk: ^3.7.2
+  sdk: '>=3.2.0 <4.0.0'
   flutter: ">=1.17.0"
 
 dependencies:
