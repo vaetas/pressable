@@ -1,6 +1,7 @@
 // ignore_for_file: avoid_print
 import 'package:flutter/material.dart';
 import 'package:pressable/pressable.dart';
+import 'coordination_demo.dart';
 
 void main() {
   runApp(const ExampleApp());
@@ -15,6 +16,9 @@ class ExampleApp extends StatelessWidget {
       title: 'Pressable',
       theme: ThemeData(primarySwatch: Colors.blue),
       home: const HomeScreen(),
+      routes: {
+        '/coordination': (context) => const CoordinationDemo(),
+      },
     );
   }
 }
@@ -35,6 +39,15 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         title: const Text('Pressable Example'),
         centerTitle: false,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.science),
+            tooltip: 'Coordination Demo',
+            onPressed: () {
+              Navigator.pushNamed(context, '/coordination');
+            },
+          ),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8),

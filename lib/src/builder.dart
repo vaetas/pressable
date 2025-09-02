@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pressable/src/base.dart';
+import 'package:pressable/src/coordination.dart';
 
 /// Builds [Widget] inside [PressableBuilder].
 typedef PressableBuilderCallback =
@@ -13,11 +14,16 @@ class PressableBuilder extends StatefulWidget {
     required this.builder,
     this.onPressed,
     this.onLongPressed,
+    this.coordinationConfig,
   });
 
   final PressableBuilderCallback builder;
   final VoidCallback? onPressed;
   final VoidCallback? onLongPressed;
+  
+  /// Configuration for pointer coordination behavior.
+  /// If null, uses the global configuration from [PressableCoordinator].
+  final PressableCoordinationConfig? coordinationConfig;
 
   @override
   PressableBaseState<PressableBuilder> createState() =>
@@ -25,6 +31,11 @@ class PressableBuilder extends StatefulWidget {
 }
 
 class _PressableBuilderState extends PressableBaseState<PressableBuilder> {
+  @override
+  PressableCoordinationConfig get coordinationConfig {
+    return widget.coordinationConfig ?? super.coordinationConfig;
+  }
+
   @override
   Widget build(BuildContext context) {
     return MouseRegion(

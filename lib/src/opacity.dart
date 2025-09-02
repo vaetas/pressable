@@ -13,6 +13,7 @@ class PressableOpacity extends StatefulWidget {
     this.onPressEnded,
     this.onPressCanceled,
     this.theme,
+    this.coordinationConfig,
   });
 
   final Widget child;
@@ -22,6 +23,10 @@ class PressableOpacity extends StatefulWidget {
   final VoidCallback? onPressStarted;
   final VoidCallback? onPressEnded;
   final VoidCallback? onPressCanceled;
+  
+  /// Configuration for pointer coordination behavior.
+  /// If null, uses the global configuration from [PressableCoordinator].
+  final PressableCoordinationConfig? coordinationConfig;
 
   @override
   PressableBaseState<PressableOpacity> createState() =>
@@ -38,6 +43,11 @@ class _PressableOpacityState extends PressableBaseState<PressableOpacity>
     return widget.theme ??
         DefaultPressableTheme.of(context)?.opacityTheme ??
         const PressableThemeOpacity();
+  }
+
+  @override
+  PressableCoordinationConfig get coordinationConfig {
+    return widget.coordinationConfig ?? super.coordinationConfig;
   }
 
   @override

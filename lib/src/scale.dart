@@ -13,6 +13,7 @@ class PressableScale extends StatefulWidget {
     this.onPressEnded,
     this.onPressCanceled,
     this.theme,
+    this.coordinationConfig,
   });
 
   final Widget child;
@@ -22,6 +23,10 @@ class PressableScale extends StatefulWidget {
   final VoidCallback? onPressEnded;
   final VoidCallback? onPressCanceled;
   final PressableThemeScale? theme;
+  
+  /// Configuration for pointer coordination behavior.
+  /// If null, uses the global configuration from [PressableCoordinator].
+  final PressableCoordinationConfig? coordinationConfig;
 
   @override
   PressableBaseState<PressableScale> createState() => _PressableScaleState();
@@ -37,6 +42,11 @@ class _PressableScaleState extends PressableBaseState<PressableScale>
     return widget.theme ??
         DefaultPressableTheme.of(context)?.scaleTheme ??
         const PressableThemeScale();
+  }
+
+  @override
+  PressableCoordinationConfig get coordinationConfig {
+    return widget.coordinationConfig ?? super.coordinationConfig;
   }
 
   @override
