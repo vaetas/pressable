@@ -15,7 +15,7 @@ class CustomGestureDetector extends StatefulWidget {
     this.onLongPress,
     this.onLongPressStart,
     this.onLongPressEnd,
-    this.behavior,
+    this.behavior = HitTestBehavior.opaque,
     this.excludeFromSemantics = false,
   });
 
@@ -27,7 +27,7 @@ class CustomGestureDetector extends StatefulWidget {
   final VoidCallback? onLongPress;
   final GestureLongPressStartCallback? onLongPressStart;
   final GestureLongPressEndCallback? onLongPressEnd;
-  final HitTestBehavior? behavior;
+  final HitTestBehavior behavior;
   final bool excludeFromSemantics;
 
   @override
@@ -62,7 +62,7 @@ class _CustomGestureDetectorState extends State<CustomGestureDetector> {
       
       // Only trigger fallback if gesture detector didn't handle it
       widget.onTapUp?.call(TapUpDetails(
-        kind: PointerDeviceKind.touch,
+        kind: event.kind,
         globalPosition: event.position,
         localPosition: event.localPosition,
       ));
@@ -114,7 +114,7 @@ class _CustomGestureDetectorState extends State<CustomGestureDetector> {
       onLongPress: widget.onLongPress,
       onLongPressStart: widget.onLongPressStart,
       onLongPressEnd: widget.onLongPressEnd,
-      behavior: widget.behavior ?? HitTestBehavior.opaque,
+      behavior: widget.behavior,
       excludeFromSemantics: widget.excludeFromSemantics,
       child: widget.child,
     );
