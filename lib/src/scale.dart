@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pressable/pressable.dart';
 import 'package:pressable/src/base.dart';
+import 'package:pressable/src/custom_gesture_detector.dart';
 
 /// Scales [child] down when pressed.
 class PressableScale extends StatefulWidget {
@@ -48,7 +49,7 @@ class _PressableScaleState extends PressableBaseState<PressableScale>
           (widget.onPressed != null || widget.onLongPressed != null)
               ? SystemMouseCursors.click
               : MouseCursor.defer,
-      child: GestureDetector(
+      child: CustomGestureDetector(
         onTap: widget.onPressed,
         onTapDown: widget.onPressed != null ? onPressStarted : null,
         onTapUp: widget.onPressed != null ? onPressEnded : null,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pressable/pressable.dart';
 import 'package:pressable/src/base.dart';
+import 'package:pressable/src/custom_gesture_detector.dart';
 
 /// Makes [child] semi-transparent when pressed.
 class PressableOpacity extends StatefulWidget {
@@ -49,7 +50,7 @@ class _PressableOpacityState extends PressableBaseState<PressableOpacity>
           (widget.onPressed != null || widget.onLongPressed != null)
               ? SystemMouseCursors.click
               : SystemMouseCursors.basic,
-      child: GestureDetector(
+      child: CustomGestureDetector(
         onTap: widget.onPressed,
         onTapDown: widget.onPressed != null ? onPressStarted : null,
         onTapUp: widget.onPressed != null ? onPressEnded : null,
