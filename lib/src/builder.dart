@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pressable/src/base.dart';
+import 'package:pressable/src/custom_gesture_detector.dart';
 
 /// Builds [Widget] inside [PressableBuilder].
 typedef PressableBuilderCallback =
@@ -32,7 +33,7 @@ class _PressableBuilderState extends PressableBaseState<PressableBuilder> {
           (widget.onPressed != null || widget.onLongPressed != null)
               ? SystemMouseCursors.click
               : SystemMouseCursors.basic,
-      child: GestureDetector(
+      child: CustomGestureDetector(
         onTap: widget.onPressed,
         onTapDown: widget.onPressed != null ? onPressStarted : null,
         onTapUp: widget.onPressed != null ? onPressEnded : null,

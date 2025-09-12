@@ -1,6 +1,7 @@
 library;
 
 export 'package:pressable/src/builder.dart';
+export 'package:pressable/src/custom_gesture_detector.dart';
 export 'package:pressable/src/fill.dart';
 export 'package:pressable/src/opacity.dart';
 export 'package:pressable/src/platform.dart';
