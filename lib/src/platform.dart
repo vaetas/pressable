@@ -102,7 +102,7 @@ class _PressablePlatformState extends State<PressablePlatform> {
     if (pressable is PressableThemeOpacity) {
       return PressableOpacity(
         onPressed: widget.onPressed,
-        onLongPressed: widget.onLongPressed,
+        onLongPressStart: widget.onLongPressed,
         theme: pressable,
         child: widget.child,
       );

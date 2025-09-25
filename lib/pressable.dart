@@ -1,5 +1,6 @@
 library;
 
+export 'package:pressable/src/base.dart' show kLongPressDuration;
 export 'package:pressable/src/builder.dart';
 export 'package:pressable/src/fill.dart';
 export 'package:pressable/src/opacity.dart';
