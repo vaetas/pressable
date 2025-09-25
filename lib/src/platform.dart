@@ -94,7 +94,7 @@ class _PressablePlatformState extends State<PressablePlatform> {
     if (pressable is PressableThemeScale) {
       return PressableScale(
         onPressed: widget.onPressed,
-        onLongPressed: widget.onLongPressed,
+        onLongPressStart: widget.onLongPressed,
         theme: pressable,
         child: widget.child,
       );

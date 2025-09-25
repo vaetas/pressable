@@ -80,19 +80,13 @@ class _HomeScreenState extends State<HomeScreen> {
               PressableScale(
                 key: ValueKey('pressable-scale'),
                 onPressed: () {
-                  print('[HomeScreen.build] Scale pressed');
+                  print('[PressableScale] Scale pressed');
                 },
-                onPressStarted: () {
-                  print('[HomeScreen.build] Scale started');
+                onLongPressStart: () {
+                  print('[PressableScale] Scale started');
                 },
-                onPressEnded: () {
-                  print('[HomeScreen.build] Scale ended');
-                },
-                onPressCanceled: () {
-                  print('[HomeScreen.build] Scale canceled');
-                },
-                onLongPressed: () {
-                  print('[HomeScreen.build] Scale long pressed');
+                onLongPressEnd: () {
+                  print('[PressableScale] Scale ended');
                 },
                 theme: const PressableThemeScale(scaleFactor: 0.8),
                 child: const ExampleButton(title: 'Scale'),

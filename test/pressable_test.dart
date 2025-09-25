@@ -37,8 +37,8 @@ void main() {
           home: Scaffold(
             body: PressableScale(
               onPressed: () => pressed = true,
-              onPressStarted: () => pressStarted = true,
-              onPressEnded: () => pressEnded = true,
+              onLongPressStart: () => pressStarted = true,
+              onLongPressEnd: () => pressEnded = true,
               child: const Text('Scale Test'),
             ),
           ),
@@ -154,7 +154,7 @@ void main() {
         MaterialApp(
           home: Scaffold(
             body: PressableScale(
-              onLongPressed: () => longPressed = true,
+              onLongPressStart: () => longPressed = true,
               child: const Text('Long Press Test'),
             ),
           ),
@@ -289,7 +289,7 @@ void main() {
           home: Scaffold(
             body: PressableScale(
               onPressed: () {},
-              onPressCanceled: () => pressCanceled = true,
+              onLongPressEnd: () => pressCanceled = true,
               child: const Text('Cancel Test'),
             ),
           ),
