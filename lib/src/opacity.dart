@@ -114,7 +114,7 @@ class _PressableOpacityState extends State<PressableOpacity>
 
   void _handleMouseExit(PointerExitEvent event) {
     // Only handle if we have an active gesture
-    if (!_hasActiveGesture) return;
+    if (!_hasActiveGesture || event.pointer != _activePointerId) return;
 
     _longPressTimer?.cancel();
 
