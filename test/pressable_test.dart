@@ -86,27 +86,6 @@ void main() {
       expect(pressed, isTrue);
     });
 
-    testWidgets('Pressable.fill renders correctly', (tester) async {
-      var pressed = false;
-
-      await tester.pumpWidget(
-        MaterialApp(
-          home: Scaffold(
-            body: PressableFill(
-              onPressed: () => pressed = true,
-              child: const Text('Fill Test'),
-            ),
-          ),
-        ),
-      );
-
-      expect(find.text('Fill Test'), findsOneWidget);
-      expect(find.byType(InkWell), findsOneWidget);
-
-      await tester.tap(find.text('Fill Test'));
-      expect(pressed, isTrue);
-    });
-
     testWidgets('Pressable.builder provides correct pressed state', (
       tester,
     ) async {
@@ -237,30 +216,6 @@ void main() {
         find.byType(PressableRipple),
       );
       expect(rippleWidget.theme, equals(customTheme));
-    });
-
-    testWidgets('Fill theme customization works', (tester) async {
-      const customTheme = PressableThemeFill(
-        fillColor: Colors.green,
-        borderRadius: BorderRadius.all(Radius.circular(15)),
-      );
-
-      await tester.pumpWidget(
-        MaterialApp(
-          home: Scaffold(
-            body: PressableFill(
-              theme: customTheme,
-              onPressed: () {},
-              child: const Text('Custom Fill'),
-            ),
-          ),
-        ),
-      );
-
-      final fillWidget = tester.widget<PressableFill>(
-        find.byType(PressableFill),
-      );
-      expect(fillWidget.theme, equals(customTheme));
     });
 
     testWidgets('Disabled pressable does not respond to taps', (tester) async {

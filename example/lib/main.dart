@@ -28,7 +28,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  var _defaultTheme = const PressableThemeFill(fillColor: Colors.red);
+  final _defaultTheme = const PressableThemeOpacity(opacityFactor: 0.4);
 
   @override
   Widget build(BuildContext context) {
@@ -110,15 +110,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: const ExampleButton(title: 'Opacity'),
               ),
               const SizedBox(height: 8),
-              PressableFill(
-                key: ValueKey('pressable-fill'),
-                onPressed: () {
-                  print('[HomeScreen.build] Fill pressed');
-                },
-                theme: const PressableThemeFill(fillColor: Colors.red),
-                child: const ExampleButton(title: 'Fill'),
-              ),
-              const SizedBox(height: 8),
               SizedBox(
                 width: 150,
                 child: Stack(
@@ -147,35 +138,17 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               const SizedBox(height: 32),
               DefaultPressableTheme(
-                fillTheme: _defaultTheme,
-                child: PressableFill(
+                opacityTheme: _defaultTheme,
+                child: PressableOpacity(
                   key: ValueKey('pressable-fill-default'),
                   onPressed: () {
                     print('[HomeScreen.build] Default theme pressed');
                   },
                   child: ExampleButton(
                     title:
-                        'Default theme ${_defaultTheme.fillColor == Colors.red ? '(red)' : '(blue))'}',
+                        'Default theme ${_defaultTheme.opacityFactor == 0.4 ? '(red)' : '(blue))'}',
                   ),
                 ),
-              ),
-              const SizedBox(height: 4),
-              PressableOpacity(
-                key: ValueKey('pressable-change-default-theme'),
-                child: Text('Change default theme'),
-                onPressed: () {
-                  setState(() {
-                    if (_defaultTheme.fillColor == Colors.red) {
-                      _defaultTheme = const PressableThemeFill(
-                        fillColor: Colors.blue,
-                      );
-                    } else {
-                      _defaultTheme = const PressableThemeFill(
-                        fillColor: Colors.red,
-                      );
-                    }
-                  });
-                },
               ),
               const SizedBox(height: 32),
               ElevatedButton(
@@ -212,7 +185,12 @@ class ExampleButton extends StatelessWidget {
         children: [
           Text(title),
           const Spacer(),
-          IconButton(onPressed: () {}, icon: const Icon(Icons.bookmark)),
+          IconButton(
+            onPressed: () {
+              print('[ExampleButton] Bookmark pressed');
+            },
+            icon: const Icon(Icons.bookmark),
+          ),
         ],
       ),
     );

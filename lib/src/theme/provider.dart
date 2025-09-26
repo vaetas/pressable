@@ -8,14 +8,12 @@ class DefaultPressableTheme extends InheritedWidget {
     this.rippleTheme = const PressableThemeRipple(),
     this.scaleTheme = const PressableThemeScale(),
     this.opacityTheme = const PressableThemeOpacity(),
-    this.fillTheme = const PressableThemeFill(),
     required super.child,
   });
 
   final PressableThemeRipple rippleTheme;
   final PressableThemeScale scaleTheme;
   final PressableThemeOpacity opacityTheme;
-  final PressableThemeFill fillTheme;
 
   /// Get closest [DefaultPressableTheme] above in the Widget tree.
   static DefaultPressableTheme? of(BuildContext context) {
@@ -26,6 +24,5 @@ class DefaultPressableTheme extends InheritedWidget {
   bool updateShouldNotify(DefaultPressableTheme oldWidget) =>
       rippleTheme != oldWidget.rippleTheme ||
       scaleTheme != oldWidget.scaleTheme ||
-      opacityTheme != oldWidget.opacityTheme ||
-      fillTheme != oldWidget.fillTheme;
+      opacityTheme != oldWidget.opacityTheme;
 }

@@ -110,32 +110,3 @@ class PressableThemeOpacity implements PressableTheme {
         'reverseCurve: $reverseCurve)';
   }
 }
-
-/// Customize [PressableFill] animations.
-class PressableThemeFill implements PressableTheme {
-  const PressableThemeFill({
-    this.fillColor = Colors.black38,
-    this.borderRadius = BorderRadius.zero,
-  });
-
-  final Color fillColor;
-  final BorderRadius borderRadius;
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-    return other is PressableThemeFill &&
-        other.fillColor == fillColor &&
-        other.borderRadius == borderRadius;
-  }
-
-  @override
-  int get hashCode => Object.hash(fillColor, borderRadius);
-
-  @override
-  String toString() {
-    return 'PressableThemeFill('
-        'fillColor: $fillColor, '
-        'borderRadius: $borderRadius)';
-  }
-}

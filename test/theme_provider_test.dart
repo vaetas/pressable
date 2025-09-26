@@ -19,7 +19,6 @@ void main() {
         splashColor: Colors.red,
         highlightColor: Colors.blue,
       );
-      const customFillTheme = PressableThemeFill(fillColor: Colors.green);
 
       await tester.pumpWidget(
         MaterialApp(
@@ -27,7 +26,6 @@ void main() {
             scaleTheme: customScaleTheme,
             opacityTheme: customOpacityTheme,
             rippleTheme: customRippleTheme,
-            fillTheme: customFillTheme,
             child: Scaffold(
               body: Column(
                 children: [
@@ -40,7 +38,6 @@ void main() {
                     onPressed: () {},
                     child: const Text('Ripple'),
                   ),
-                  PressableFill(onPressed: () {}, child: const Text('Fill')),
                 ],
               ),
             ),
@@ -205,10 +202,9 @@ void main() {
         ),
       );
 
-      final scaleWidgets =
-          tester
-              .widgetList<PressableScale>(find.byType(PressableScale))
-              .toList();
+      final scaleWidgets = tester
+          .widgetList<PressableScale>(find.byType(PressableScale))
+          .toList();
 
       // First widget uses default theme (null passed to widget)
       expect(scaleWidgets[0].theme, isNull);
