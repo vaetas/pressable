@@ -1,3 +1,8 @@
+## 0.11.0
+
+* feat: remove additional tap events
+* fix: handle only concurrent tap
+
 ## 0.10.0
 
 * fix: set lower sdk version

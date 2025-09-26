@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:pressable/pressable.dart';
 
-/// Base class for all pressable themes.
-abstract class PressableTheme {}
-
 /// Customize [PressableScale] animations.
-class PressableThemeScale implements PressableTheme {
+class PressableThemeScale {
   const PressableThemeScale({
     this.scaleFactor = 0.8,
     this.duration = const Duration(milliseconds: 100),
@@ -42,7 +39,7 @@ class PressableThemeScale implements PressableTheme {
 }
 
 /// Customize [PressableOpacity] animations.
-class PressableThemeOpacity implements PressableTheme {
+class PressableThemeOpacity {
   const PressableThemeOpacity({
     this.duration = const Duration(milliseconds: 100),
     this.opacityFactor = 0.6,
