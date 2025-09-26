@@ -119,20 +119,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: const ExampleButton(title: 'Fill'),
               ),
               const SizedBox(height: 8),
-              PressablePlatform(
-                key: ValueKey('pressable-platform'),
-                onPressed: () {
-                  print('[HomeScreen.build] Platform pressed');
-                },
-                ios: const PressableThemeRipple(),
-                android: const PressableThemeScale(),
-                macos: const PressableThemeScale(),
-                linux: const PressableThemeFill(),
-                windows: const PressableThemeOpacity(),
-                web: const PressableThemeScale(),
-                child: const ExampleButton(title: 'Platform'),
-              ),
-              const SizedBox(height: 8),
               SizedBox(
                 width: 150,
                 child: Stack(
