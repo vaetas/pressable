@@ -97,7 +97,7 @@ void main() {
           home: Scaffold(
             body: PressableBuilder(
               onPressed: () => pressed = true,
-              builder: (context, isPressed) {
+              builder: (context, isPressed, isLongPressed) {
                 builderPressed = isPressed;
                 return Text(isPressed ? 'Pressed' : 'Not Pressed');
               },

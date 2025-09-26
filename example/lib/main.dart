@@ -47,7 +47,13 @@ class _HomeScreenState extends State<HomeScreen> {
                 onPressed: () {
                   print('[HomeScreen.build] Builder pressed');
                 },
-                builder: (context, isPressed) {
+                onLongPressStart: () {
+                  print('[HomeScreen.build] Builder long pressed');
+                },
+                onLongPressEnd: () {
+                  print('[HomeScreen.build] Builder long pressed end');
+                },
+                builder: (context, isPressed, isLongPressed) {
                   return AnimatedContainer(
                     width: 200,
                     height: 50,
@@ -58,7 +64,17 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     child: Center(
                       child: Text(
-                        'Custom Builder',
+                        // 'Custom Builder',
+                        () {
+                          if (!isPressed && !isLongPressed) {
+                            return 'Custom Builder';
+                          } else if (isPressed && !isLongPressed) {
+                            return 'Custom Builder Pressed';
+                          } else if (isLongPressed) {
+                            return 'Custom Builder Long Pressed';
+                          }
+                          return 'Custom Builder';
+                        }(),
                         style: TextStyle(
                           fontSize: 12,
                           color: isPressed ? Colors.white : Colors.black,

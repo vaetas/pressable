@@ -1,9 +1,12 @@
+import 'dart:async' show Timer;
+
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:pressable/src/base.dart';
+import 'package:pressable/src/base.dart' show kLongPressDuration;
 
 /// Builds [Widget] inside [PressableBuilder].
-typedef PressableBuilderCallback =
-    Widget Function(BuildContext context, bool isPressed);
+typedef PressableBuilderCallback = Widget Function(
+    BuildContext context, bool isPressed, bool isLongPressed);
 
 /// Use [PressableBuilder] to define your own pressable animation. Simplifies
 /// working with [GestureDetector].
@@ -12,34 +15,148 @@ class PressableBuilder extends StatefulWidget {
     super.key,
     required this.builder,
     this.onPressed,
-    this.onLongPressed,
+    this.onLongPressStart,
+    this.onLongPressEnd,
+    this.longPressDuration = kLongPressDuration,
   });
 
   final PressableBuilderCallback builder;
   final VoidCallback? onPressed;
-  final VoidCallback? onLongPressed;
+  final VoidCallback? onLongPressStart;
+  final VoidCallback? onLongPressEnd;
+  final Duration longPressDuration;
 
   @override
-  PressableBaseState<PressableBuilder> createState() =>
-      _PressableBuilderState();
+  State<PressableBuilder> createState() => _PressableBuilderState();
 }
 
-class _PressableBuilderState extends PressableBaseState<PressableBuilder> {
+class _PressableBuilderState extends State<PressableBuilder> {
+  // Touch event handling state
+  bool _isPressed = false;
+  bool _isLongPressed = false;
+  bool _hasActiveGesture = false;
+  Timer? _longPressTimer;
+
+  // Track the pointer that started the gesture to ignore subsequent ones
+  int? _activePointerId;
+
   @override
   Widget build(BuildContext context) {
-    return MouseRegion(
-      cursor:
-          (widget.onPressed != null || widget.onLongPressed != null)
-              ? SystemMouseCursors.click
-              : SystemMouseCursors.basic,
-      child: GestureDetector(
-        onTap: widget.onPressed,
-        onTapDown: widget.onPressed != null ? onPressStarted : null,
-        onTapUp: widget.onPressed != null ? onPressEnded : null,
-        onTapCancel: widget.onPressed != null ? onPressCanceled : null,
-        onLongPress: widget.onLongPressed,
-        child: widget.builder(context, isPressed),
+    return Listener(
+      onPointerDown: _handlePointerDown,
+      onPointerUp: _handlePointerUp,
+      onPointerCancel: _handlePointerCancel,
+      child: MouseRegion(
+        cursor: (widget.onPressed != null || widget.onLongPressStart != null)
+            ? SystemMouseCursors.click
+            : SystemMouseCursors.basic,
+        onExit: _handleMouseExit,
+        child: widget.builder(
+          context,
+          _isPressed,
+          _isLongPressed,
+        ),
       ),
     );
+  }
+
+  void _handlePointerDown(PointerDownEvent event) {
+    // Only handle the first pointer, ignore subsequent ones
+    if (_hasActiveGesture) return;
+
+    // print('[_PressableBuilderState._handlePointerDown] Starting gesture');
+    _hasActiveGesture = true;
+    _activePointerId = event.pointer;
+
+    setState(() {
+      _isPressed = true;
+    });
+
+    // Start long press timer
+    _longPressTimer?.cancel();
+    _longPressTimer = Timer(widget.longPressDuration, () {
+      if (_hasActiveGesture && !_isLongPressed) {
+        // print(
+        //   '[_PressableBuilderState._handlePointerDown] '
+        //   'Starting long press',
+        // );
+        setState(() {
+          _isLongPressed = true;
+        });
+        widget.onLongPressStart?.call();
+      }
+    });
+  }
+
+  void _handlePointerUp(PointerUpEvent event) {
+    // Only handle the pointer that started the gesture
+    if (!_hasActiveGesture || event.pointer != _activePointerId) return;
+
+    // print('[_PressableBuilderState._handlePointerUp] Pointer up');
+    _longPressTimer?.cancel();
+
+    if (_isLongPressed) {
+      // Long press was active, call end callback
+      // print('[_PressableBuilderState._handlePointerUp] Ending long press');
+      widget.onLongPressEnd?.call();
+    } else {
+      // Normal tap, call pressed callback
+      // print('[_PressableBuilderState._handlePointerUp] Normal tap');
+      widget.onPressed?.call();
+    }
+
+    _resetState();
+  }
+
+  void _handlePointerCancel(PointerCancelEvent event) {
+    // Only handle the pointer that started the gesture
+    if (!_hasActiveGesture || event.pointer != _activePointerId) return;
+
+    // print('[_PressableBuilderState._handlePointerCancel] Pointer cancel');
+    _longPressTimer?.cancel();
+
+    if (_isLongPressed) {
+      // print(
+      //   '[_PressableBuilderState._handlePointerCancel] '
+      //   'Cancelling long press',
+      // );
+      widget.onLongPressEnd?.call();
+    }
+
+    _resetState();
+  }
+
+  void _handleMouseExit(PointerExitEvent event) {
+    // Only handle if we have an active gesture
+    if (!_hasActiveGesture || event.pointer != _activePointerId) return;
+
+    // print('[_PressableBuilderState._handleMouseExit] Mouse exit');
+    _longPressTimer?.cancel();
+
+    if (_isLongPressed) {
+      // print(
+      //   '[_PressableBuilderState._handleMouseExit] '
+      //   'Mouse exit during long press',
+      // );
+      widget.onLongPressEnd?.call();
+    }
+
+    _resetState();
+  }
+
+  void _resetState() {
+    // print('[_PressableBuilderState._resetState] Resetting state');
+    setState(() {
+      _isPressed = false;
+      _isLongPressed = false;
+    });
+    _hasActiveGesture = false;
+    _activePointerId = null;
+  }
+
+  @override
+  void dispose() {
+    _longPressTimer?.cancel();
+    super.dispose();
   }
 }

@@ -80,7 +80,10 @@ class _PressableScaleState extends State<PressableScale>
     _longPressTimer?.cancel();
     _longPressTimer = Timer(widget.longPressDuration, () {
       if (_hasActiveGesture && !_isLongPressed) {
-        print('[_PressableScaleState._handlePointerDown] Starting long press');
+        // print(
+        //   '[_PressableScaleState._handlePointerDown] '
+        //   'Starting long press',
+        // );
         _isLongPressed = true;
         widget.onLongPressStart?.call();
       }
@@ -95,11 +98,11 @@ class _PressableScaleState extends State<PressableScale>
 
     if (_isLongPressed) {
       // Long press was active, call end callback
-      print('[_PressableScaleState._handlePointerUp] Ending long press');
+      // print('[_PressableScaleState._handlePointerUp] Ending long press');
       widget.onLongPressEnd?.call();
     } else {
       // Normal tap, call pressed callback
-      print('[_PressableScaleState._handlePointerUp] Normal tap');
+      // print('[_PressableScaleState._handlePointerUp] Normal tap');
       widget.onPressed?.call();
     }
 
@@ -113,8 +116,10 @@ class _PressableScaleState extends State<PressableScale>
     _longPressTimer?.cancel();
 
     if (_isLongPressed) {
-      print(
-          '[_PressableScaleState._handlePointerCancel] Cancelling long press');
+      // print(
+      //   '[_PressableScaleState._handlePointerCancel] '
+      //   'Cancelling long press',
+      // );
       widget.onLongPressEnd?.call();
     }
 
@@ -128,8 +133,10 @@ class _PressableScaleState extends State<PressableScale>
     _longPressTimer?.cancel();
 
     if (_isLongPressed) {
-      print(
-          '[_PressableScaleState._handleMouseExit] Mouse exit during long press');
+      // print(
+      //   '[_PressableScaleState._handleMouseExit] '
+      //   'Mouse exit during long press',
+      // );
       widget.onLongPressEnd?.call();
     }
 
