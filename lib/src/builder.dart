@@ -20,6 +20,11 @@ class PressableBuilder extends StatefulWidget {
     this.longPressDuration = kLongPressDuration,
   });
 
+  /// [builder] can have the following states:
+  ///
+  /// - `isPressed` is true when the widget is pressed
+  /// - `isLongPressed` is true when the widget is long pressed. Remember
+  ///   that when `isLongPressed` is true, `isPressed` is also true.
   final PressableBuilderCallback builder;
   final VoidCallback? onPressed;
   final VoidCallback? onLongPressStart;

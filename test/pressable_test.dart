@@ -4,27 +4,6 @@ import 'package:pressable/pressable.dart';
 
 void main() {
   group('Pressable Widget Tests', () {
-    testWidgets('Pressable.ripple renders correctly', (tester) async {
-      var pressed = false;
-
-      await tester.pumpWidget(
-        MaterialApp(
-          home: Scaffold(
-            body: PressableRipple(
-              onPressed: () => pressed = true,
-              child: const Text('Test'),
-            ),
-          ),
-        ),
-      );
-
-      expect(find.text('Test'), findsOneWidget);
-      expect(find.byType(InkWell), findsOneWidget);
-
-      await tester.tap(find.text('Test'));
-      expect(pressed, isTrue);
-    });
-
     testWidgets('Pressable.scale renders and animates correctly', (
       tester,
     ) async {
@@ -191,31 +170,6 @@ void main() {
         find.byType(PressableOpacity),
       );
       expect(opacityWidget.theme, equals(customTheme));
-    });
-
-    testWidgets('Ripple theme customization works', (tester) async {
-      const customTheme = PressableThemeRipple(
-        splashColor: Colors.red,
-        highlightColor: Colors.blue,
-        borderRadius: BorderRadius.all(Radius.circular(10)),
-      );
-
-      await tester.pumpWidget(
-        MaterialApp(
-          home: Scaffold(
-            body: PressableRipple(
-              theme: customTheme,
-              onPressed: () {},
-              child: const Text('Custom Ripple'),
-            ),
-          ),
-        ),
-      );
-
-      final rippleWidget = tester.widget<PressableRipple>(
-        find.byType(PressableRipple),
-      );
-      expect(rippleWidget.theme, equals(customTheme));
     });
 
     testWidgets('Disabled pressable does not respond to taps', (tester) async {

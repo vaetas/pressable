@@ -4,39 +4,6 @@ import 'package:pressable/pressable.dart';
 /// Base class for all pressable themes.
 abstract class PressableTheme {}
 
-/// Customize [PressableRipple] animations.
-class PressableThemeRipple implements PressableTheme {
-  const PressableThemeRipple({
-    this.splashColor,
-    this.highlightColor,
-    this.borderRadius,
-  });
-
-  final Color? splashColor;
-  final Color? highlightColor;
-  final BorderRadius? borderRadius;
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-    return other is PressableThemeRipple &&
-        other.splashColor == splashColor &&
-        other.highlightColor == highlightColor &&
-        other.borderRadius == borderRadius;
-  }
-
-  @override
-  int get hashCode => Object.hash(splashColor, highlightColor, borderRadius);
-
-  @override
-  String toString() {
-    return 'PressableThemeRipple('
-        'splashColor: $splashColor, '
-        'highlightColor: $highlightColor, '
-        'borderRadius: $borderRadius)';
-  }
-}
-
 /// Customize [PressableScale] animations.
 class PressableThemeScale implements PressableTheme {
   const PressableThemeScale({

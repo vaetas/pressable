@@ -28,7 +28,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final _defaultTheme = const PressableThemeOpacity(opacityFactor: 0.4);
+  var _defaultOpacityTheme = const PressableThemeOpacity(opacityFactor: 0.2);
 
   @override
   Widget build(BuildContext context) {
@@ -54,6 +54,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   print('[HomeScreen.build] Builder long pressed end');
                 },
                 builder: (context, isPressed, isLongPressed) {
+                  print(
+                    '[HomeScreen.build] Builder build method: $isPressed, $isLongPressed',
+                  );
                   return AnimatedContainer(
                     width: 200,
                     height: 50,
@@ -83,14 +86,6 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   );
                 },
-              ),
-              const SizedBox(height: 8),
-              PressableRipple(
-                key: ValueKey('pressable-ripple'),
-                onPressed: () {
-                  print('[HomeScreen.build] Ripple pressed');
-                },
-                child: const ExampleButton(title: 'Ripple'),
               ),
               const SizedBox(height: 8),
               PressableScale(
@@ -154,7 +149,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               const SizedBox(height: 32),
               DefaultPressableTheme(
-                opacityTheme: _defaultTheme,
+                opacityTheme: _defaultOpacityTheme,
                 child: PressableOpacity(
                   key: ValueKey('pressable-fill-default'),
                   onPressed: () {
@@ -162,7 +157,28 @@ class _HomeScreenState extends State<HomeScreen> {
                   },
                   child: ExampleButton(
                     title:
-                        'Default theme ${_defaultTheme.opacityFactor == 0.4 ? '(red)' : '(blue))'}',
+                        'Default theme ${_defaultOpacityTheme.opacityFactor}',
+                  ),
+                ),
+              ),
+              const SizedBox(height: 8),
+              DefaultPressableTheme(
+                opacityTheme: _defaultOpacityTheme,
+                child: PressableOpacity(
+                  key: ValueKey('pressable-scale-default'),
+                  onPressed: () {
+                    print('[HomeScreen.build] Default theme pressed');
+                    setState(() {
+                      _defaultOpacityTheme = PressableThemeOpacity(
+                        opacityFactor:
+                            _defaultOpacityTheme.opacityFactor == 0.2
+                                ? 0.8
+                                : 0.2,
+                      );
+                    });
+                  },
+                  child: Text(
+                    'Default theme ${_defaultOpacityTheme.opacityFactor}',
                   ),
                 ),
               ),

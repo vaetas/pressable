@@ -15,17 +15,12 @@ void main() {
         opacityFactor: 0.4,
         duration: Duration(milliseconds: 200),
       );
-      const customRippleTheme = PressableThemeRipple(
-        splashColor: Colors.red,
-        highlightColor: Colors.blue,
-      );
 
       await tester.pumpWidget(
         MaterialApp(
           home: DefaultPressableTheme(
             scaleTheme: customScaleTheme,
             opacityTheme: customOpacityTheme,
-            rippleTheme: customRippleTheme,
             child: Scaffold(
               body: Column(
                 children: [
@@ -33,10 +28,6 @@ void main() {
                   PressableOpacity(
                     onPressed: () {},
                     child: const Text('Opacity'),
-                  ),
-                  PressableRipple(
-                    onPressed: () {},
-                    child: const Text('Ripple'),
                   ),
                 ],
               ),
@@ -47,8 +38,6 @@ void main() {
 
       expect(find.text('Scale'), findsOneWidget);
       expect(find.text('Opacity'), findsOneWidget);
-      expect(find.text('Ripple'), findsOneWidget);
-      expect(find.text('Fill'), findsOneWidget);
     });
 
     testWidgets('DefaultPressableTheme.of returns correct theme', (
