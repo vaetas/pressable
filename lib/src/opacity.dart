@@ -93,7 +93,7 @@ class _PressableOpacityState extends State<PressableOpacity>
 
     _longPressTimer?.cancel();
 
-    if (_isLongPressed) {
+    if (_isLongPressed && widget.onLongPressEnd != null) {
       // Long press was active, call end callback
       // print('[PressableOpacityState._handlePointerUp] Ending long press');
       widget.onLongPressEnd?.call();

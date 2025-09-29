@@ -103,7 +103,7 @@ class _PressableBuilderState extends State<PressableBuilder> {
     // print('[_PressableBuilderState._handlePointerUp] Pointer up');
     _longPressTimer?.cancel();
 
-    if (_isLongPressed) {
+    if (_isLongPressed && widget.onLongPressEnd != null) {
       // Long press was active, call end callback
       // print('[_PressableBuilderState._handlePointerUp] Ending long press');
       widget.onLongPressEnd?.call();

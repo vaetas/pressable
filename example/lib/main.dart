@@ -108,12 +108,12 @@ class _HomeScreenState extends State<HomeScreen> {
                 onPressed: () {
                   print('[PressableOpacity] Opacity pressed');
                 },
-                onLongPressStart: () {
-                  print('[PressableOpacity] Opacity started');
-                },
-                onLongPressEnd: () {
-                  print('[PressableOpacity] Opacity ended');
-                },
+                // onLongPressStart: () {
+                //   print('[PressableOpacity] Opacity started');
+                // },
+                // onLongPressEnd: () {
+                //   print('[PressableOpacity] Opacity ended');
+                // },
                 theme: const PressableThemeOpacity(
                   curve: Curves.easeOut,
                   opacityFactor: 0.4,

@@ -1,3 +1,7 @@
+## 0.12.0
+
+* fix: use `onPressed` as a fallback
+
 ## 0.11.0
 
 * feat: remove additional tap events

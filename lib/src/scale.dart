@@ -96,7 +96,7 @@ class _PressableScaleState extends State<PressableScale>
 
     _longPressTimer?.cancel();
 
-    if (_isLongPressed) {
+    if (_isLongPressed && widget.onLongPressEnd != null) {
       // Long press was active, call end callback
       // print('[_PressableScaleState._handlePointerUp] Ending long press');
       widget.onLongPressEnd?.call();
