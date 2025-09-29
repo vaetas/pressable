@@ -50,6 +50,12 @@ class _PressableOpacityState extends State<PressableOpacity>
 
   @override
   void dispose() {
+    if (_isLongPressed) {
+      widget.onLongPressEnd?.call();
+      _isLongPressed = false;
+      _hasActiveGesture = false;
+      _activePointerId = null;
+    }
     _longPressTimer?.cancel();
     _controller.dispose();
     super.dispose();

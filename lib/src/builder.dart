@@ -6,7 +6,10 @@ import 'package:pressable/src/base.dart' show kLongPressDuration;
 
 /// Builds [Widget] inside [PressableBuilder].
 typedef PressableBuilderCallback = Widget Function(
-    BuildContext context, bool isPressed, bool isLongPressed);
+  BuildContext context,
+  bool isPressed,
+  bool isLongPressed,
+);
 
 /// Use [PressableBuilder] to define your own pressable animation. Simplifies
 /// working with [GestureDetector].
@@ -161,6 +164,12 @@ class _PressableBuilderState extends State<PressableBuilder> {
 
   @override
   void dispose() {
+    if (_isLongPressed) {
+      widget.onLongPressEnd?.call();
+      _isLongPressed = false;
+      _hasActiveGesture = false;
+      _activePointerId = null;
+    }
     _longPressTimer?.cancel();
     super.dispose();
   }
