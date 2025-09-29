@@ -15,19 +15,12 @@ void main() {
         opacityFactor: 0.4,
         duration: Duration(milliseconds: 200),
       );
-      const customRippleTheme = PressableThemeRipple(
-        splashColor: Colors.red,
-        highlightColor: Colors.blue,
-      );
-      const customFillTheme = PressableThemeFill(fillColor: Colors.green);
 
       await tester.pumpWidget(
         MaterialApp(
           home: DefaultPressableTheme(
             scaleTheme: customScaleTheme,
             opacityTheme: customOpacityTheme,
-            rippleTheme: customRippleTheme,
-            fillTheme: customFillTheme,
             child: Scaffold(
               body: Column(
                 children: [
@@ -36,11 +29,6 @@ void main() {
                     onPressed: () {},
                     child: const Text('Opacity'),
                   ),
-                  PressableRipple(
-                    onPressed: () {},
-                    child: const Text('Ripple'),
-                  ),
-                  PressableFill(onPressed: () {}, child: const Text('Fill')),
                 ],
               ),
             ),
@@ -50,8 +38,6 @@ void main() {
 
       expect(find.text('Scale'), findsOneWidget);
       expect(find.text('Opacity'), findsOneWidget);
-      expect(find.text('Ripple'), findsOneWidget);
-      expect(find.text('Fill'), findsOneWidget);
     });
 
     testWidgets('DefaultPressableTheme.of returns correct theme', (
@@ -205,10 +191,9 @@ void main() {
         ),
       );
 
-      final scaleWidgets =
-          tester
-              .widgetList<PressableScale>(find.byType(PressableScale))
-              .toList();
+      final scaleWidgets = tester
+          .widgetList<PressableScale>(find.byType(PressableScale))
+          .toList();
 
       // First widget uses default theme (null passed to widget)
       expect(scaleWidgets[0].theme, isNull);

@@ -5,9 +5,15 @@ Quickly add tap effects to your widgets.
 ## Usage
 
 ```dart
-final widget = Pressable.opacity(
+final widget = PressableOpacity(
   onPressed: () {
     print('Opacity pressed');
+  },
+  onLongPressStart: () {
+    print('Long Press start');
+  },
+  onLongPressEnd: () {
+    print('Long Press End')
   },
   child: const ExampleButton(title: 'Opacity'),
 );
@@ -15,11 +21,9 @@ final widget = Pressable.opacity(
 
 Supported effects:
 
-* Ripple (InkWell)
 * Scale
 * Opacity
-* Fill
-* Custom builder
+* Custom Builder
 
 ## Default Theme
 
@@ -28,25 +32,12 @@ Widget subtree.
 
 ```dart
 final widget = DefaultPressableTheme(
-  fillTheme: PressableFillTheme(
-    fillColor: Colors.green.withOpacity(0.2),
+  scaleTheme: PressableThemeScale(
+    scaleFactor: 0.5,
   ),
-  child: Pressable.fill(
+  child: PressableScale(
     onPressed: () {},
     child: const ExampleButton(title: 'Default theme'),
   ),
-);
-```
-
-## Platform-specific Pressable Theme
-
-To specify theme for each platform use `Pressable.platform()` constructor.
-
-```dart
-final widget = Pressable.platform(
-  onPressed: () {},
-  ios: const PressableTheme.opacity(),
-  android: const PressableTheme.ripple(),
-  child: const ExampleButton(title: 'Platform'),
 );
 ```
